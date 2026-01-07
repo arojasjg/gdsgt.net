@@ -1,0 +1,232 @@
+/**
+ * Gradient Utilities
+ * 
+ * Audacious gradients inspired by Monday.com and HubSpot
+ */
+
+/* Primary Gradients (Blue to Purple) */
+.gradient-primary {
+  background: linear-gradient(135deg, #0070F2 0%, #a855f7 100%);
+}
+
+.gradient-primary-hover {
+  background: linear-gradient(135deg, #0059C2 0%, #9333ea 100%);
+}
+
+/* Secondary Gradients (Orange to Pink) */
+.gradient-secondary {
+  background: linear-gradient(135deg, #FF7A59 0%, #FF3D57 100%);
+}
+
+.gradient-secondary-hover {
+  background: linear-gradient(135deg, #FF5733 0%, #E6123D 100%);
+}
+
+/* Success Gradient (Green to Blue) */
+.gradient-success {
+  background: linear-gradient(135deg, #22c55e 0%, #13B5EA 100%);
+}
+
+/* Accent Gradient (Purple to Pink) */
+.gradient-accent {
+  background: linear-gradient(135deg, #a855f7 0%, #FF3D57 100%);
+}
+
+/* Hero Gradients (Subtle backgrounds) */
+.gradient-hero-blue {
+  background: linear-gradient(135deg, #eff6ff 0%, #faf5ff 100%);
+}
+
+.gradient-hero-warm {
+  background: linear-gradient(135deg, #fff7ed 0%, #fef2f8 100%);
+}
+
+.gradient-hero-cool {
+  background: linear-gradient(135deg, #f0f9ff 0%, #f0fdf4 100%);
+}
+
+/* Text Gradients */
+.text-gradient-primary {
+  background: linear-gradient(135deg, #0070F2 0%, #a855f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-secondary {
+  background: linear-gradient(135deg, #FF7A59 0%, #FF3D57 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Border Gradients */
+.border-gradient-primary {
+  border-image: linear-gradient(135deg, #0070F2 0%, #a855f7 100%) 1;
+}
+
+.border-gradient-secondary {
+  border-image: linear-gradient(135deg, #FF7A59 0%, #FF3D57 100%) 1;
+}
+
+/* Hover Effects with Gradients */
+.hover-gradient-lift {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-gradient-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 112, 242, 0.3);
+}
+
+/* Animated Gradients */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gradient-animated {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* Card with Gradient Border */
+.card-gradient-border {
+  position: relative;
+  background: white;
+  border-radius: 0.75rem;
+  padding: 1px;
+}
+
+.card-gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 0.75rem;
+  padding: 2px;
+  background: linear-gradient(135deg, #0070F2 0%, #a855f7 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* Glow Effects */
+.glow-blue {
+  box-shadow: 0 0 20px rgba(0, 112, 242, 0.4);
+}
+
+.glow-orange {
+  box-shadow: 0 0 20px rgba(255, 122, 89, 0.4);
+}
+
+.glow-purple {
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+}
+
+.glow-pink {
+  box-shadow: 0 0 20px rgba(255, 61, 87, 0.4);
+}
+
+.glow-green {
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+}
+
+/* Hover Glow */
+.hover-glow-blue:hover {
+  box-shadow: 0 0 30px rgba(0, 112, 242, 0.6);
+  transition: box-shadow 0.3s ease;
+}
+
+.hover-glow-orange:hover {
+  box-shadow: 0 0 30px rgba(255, 122, 89, 0.6);
+  transition: box-shadow 0.3s ease;
+}
+
+/* Button Gradients */
+.btn-gradient-primary {
+  background: linear-gradient(135deg, #0070F2 0%, #a855f7 100%);
+  color: white;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-gradient-primary:hover {
+  background: linear-gradient(135deg, #0059C2 0%, #9333ea 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 112, 242, 0.4);
+}
+
+.btn-gradient-secondary {
+  background: linear-gradient(135deg, #FF7A59 0%, #FF3D57 100%);
+  color: white;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-gradient-secondary:hover {
+  background: linear-gradient(135deg, #FF5733 0%, #E6123D 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(255, 122, 89, 0.4);
+}
+
+/* Badge Gradients */
+.badge-gradient-primary {
+  background: linear-gradient(135deg, #0070F2 0%, #a855f7 100%);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.badge-gradient-secondary {
+  background: linear-gradient(135deg, #FF7A59 0%, #FF3D57 100%);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Utility Classes */
+.bg-gradient-to-r {
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+}
+
+.bg-gradient-to-br {
+  background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
+}
+
+.from-blue-600 {
+  --tw-gradient-from: #0070F2;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(0, 112, 242, 0));
+}
+
+.to-purple-600 {
+  --tw-gradient-to: #a855f7;
+}
+
+.from-orange-500 {
+  --tw-gradient-from: #FF7A59;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 122, 89, 0));
+}
+
+.to-pink-500 {
+  --tw-gradient-to: #FF3D57;
+}
+
+.from-green-500 {
+  --tw-gradient-from: #22c55e;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(34, 197, 94, 0));
+}
+
+.to-blue-500 {
+  --tw-gradient-to: #13B5EA;
+}

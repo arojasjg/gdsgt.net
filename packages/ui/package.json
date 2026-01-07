@@ -1,0 +1,27 @@
+{
+  "name": "@gds/ui",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "scripts": {
+    "lint": "eslint .",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@gds/analytics": "workspace:*",
+    "@gds/calculators": "workspace:*",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "clsx": "^2.1.0",
+    "next": "^16.1.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.3.3",
+    "tailwindcss": "^3.4.1",
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.33"
+  }
+}

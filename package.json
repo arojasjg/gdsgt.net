@@ -1,0 +1,51 @@
+{
+  "name": "gds-ecosystem",
+  "version": "1.0.0",
+  "private": true,
+  "description": "GDS Global Web Ecosystem - Multi-site monorepo for ERP, BI, CRM, AI, Data, and Services",
+  "scripts": {
+    "dev": "turbo run dev",
+    "dev:www": "turbo run dev --filter=www",
+    "dev:gdserp": "turbo run dev --filter=gdserp",
+    "dev:services": "turbo run dev --filter=services",
+    "dev:resources": "turbo run dev --filter=resources",
+    "build": "turbo run build",
+    "build:www": "turbo run build --filter=www",
+    "build:gdserp": "turbo run build --filter=gdserp",
+    "build:services": "turbo run build --filter=services",
+    "build:resources": "turbo run build --filter=resources",
+    "lint": "turbo run lint",
+    "lint:fix": "turbo run lint:fix",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "type-check": "turbo run type-check",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "test": "turbo run test",
+    "test:a11y": "playwright test",
+    "lighthouse": "lhci autorun",
+    "analyze": "ANALYZE=true bun run build"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.8.3",
+    "@lhci/cli": "^0.12.0",
+    "@playwright/test": "^1.40.1",
+    "@types/node": "^20.11.5",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "eslint": "^9.39.2",
+    "eslint-config-next": "^16.1.1",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.2.4",
+    "turbo": "^1.11.3",
+    "typescript": "^5.3.3",
+    "webpack-bundle-analyzer": "^4.10.1"
+  },
+  "packageManager": "bun@1.1.38",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=18.0.0",
+    "bun": ">=1.0.0"
+  }
+}

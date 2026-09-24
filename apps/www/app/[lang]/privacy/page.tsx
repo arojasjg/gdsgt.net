@@ -30,7 +30,7 @@ export default async function PrivacyPage({ params }: { params: Promise<{ lang: 
   const content = {
     es: {
       title: 'Política de Privacidad',
-      subtitle: 'Última actualización: 6 de enero de 2026',
+      subtitle: 'Última actualización: 24 de septiembre de 2026',
       intro: 'En GDS ONE, nos comprometemos a proteger tu privacidad y tus datos personales. Esta política explica cómo recopilamos, usamos y protegemos tu información.',
       sections: [
         {
@@ -122,12 +122,19 @@ export default async function PrivacyPage({ params }: { params: Promise<{ lang: 
           title: '7. Cookies y Tecnologías Similares',
           content: [
             'Utilizamos cookies y tecnologías similares para:',
-            '• Mantener tu sesión activa',
-            '• Recordar tus preferencias',
-            '• Analizar el uso de nuestro sitio web',
-            '• Personalizar tu experiencia',
+            '• Mantener tu sesión activa y recordar tus preferencias',
+            '• Medir el uso del sitio web (Google Analytics 4)',
+            '• Medir la efectividad de nuestros anuncios (Google Ads y Meta Pixel de Facebook e Instagram)',
             '',
-            'Puedes controlar las cookies a través de la configuración de tu navegador. Sin embargo, deshabilitar las cookies puede afectar la funcionalidad de nuestros servicios.',
+            'Proveedores de terceros:',
+            '• Google LLC (Google Analytics y Google Ads): policies.google.com/privacy',
+            '• Meta Platforms, Inc. (Meta Pixel): facebook.com/privacy/policy',
+            '',
+            'Registramos eventos como visitas a páginas, clics en enlaces de WhatsApp, teléfono o correo, y envíos de formularios. No enviamos a estos proveedores el contenido que escribes en los formularios.',
+            '',
+            'Si nos visitas desde la Unión Europea, el Espacio Económico Europeo, el Reino Unido o Suiza, solo activamos estas cookies después de que las aceptes en el banner. Desde otros países se activan por defecto.',
+            '',
+            'Puedes cambiar tu decisión en cualquier momento con el enlace "Preferencias de cookies" al pie de cada página, o bloquear las cookies en la configuración de tu navegador.',
           ]
         },
         {
@@ -180,7 +187,7 @@ export default async function PrivacyPage({ params }: { params: Promise<{ lang: 
     },
     en: {
       title: 'Privacy Policy',
-      subtitle: 'Last updated: January 6, 2026',
+      subtitle: 'Last updated: September 24, 2026',
       intro: 'At GDS ONE, we are committed to protecting your privacy and personal data. This policy explains how we collect, use, and protect your information.',
       sections: [
         {
@@ -272,12 +279,19 @@ export default async function PrivacyPage({ params }: { params: Promise<{ lang: 
           title: '7. Cookies and Similar Technologies',
           content: [
             'We use cookies and similar technologies to:',
-            '• Maintain your active session',
-            '• Remember your preferences',
-            '• Analyze website usage',
-            '• Personalize your experience',
+            '• Keep your session active and remember your preferences',
+            '• Measure website usage (Google Analytics 4)',
+            '• Measure the effectiveness of our ads (Google Ads and Meta Pixel for Facebook and Instagram)',
             '',
-            'You can control cookies through your browser settings. However, disabling cookies may affect the functionality of our services.',
+            'Third-party providers:',
+            '• Google LLC (Google Analytics and Google Ads): policies.google.com/privacy',
+            '• Meta Platforms, Inc. (Meta Pixel): facebook.com/privacy/policy',
+            '',
+            'We record events such as page views, clicks on WhatsApp, phone or email links, and form submissions. We do not send the content you type into forms to these providers.',
+            '',
+            'If you visit us from the European Union, the European Economic Area, the United Kingdom or Switzerland, these cookies are only activated after you accept them in the banner. From other countries they are active by default.',
+            '',
+            'You can change your choice at any time using the "Cookie preferences" link at the bottom of every page, or block cookies in your browser settings.',
           ]
         },
         {

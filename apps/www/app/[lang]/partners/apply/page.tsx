@@ -11,6 +11,8 @@ import Link from 'next/link';
 import { HeroSection } from '@gds/ui/layouts';
 import { Button, Input, Select, Card, Alert } from '@gds/ui';
 import { track } from '@gds/analytics';
+import { submitLead } from '@/lib/leads';
+import { whatsappLink } from '@/lib/site';
 
 export default function PartnerApplyPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = use(params);
@@ -35,6 +37,7 @@ export default function PartnerApplyPage({ params }: { params: Promise<{ lang: s
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [honeypot, setHoneypot] = useState('');
   
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,15 +53,10 @@ export default function PartnerApplyPage({ params }: { params: Promise<{ lang: s
         lang: lang
       });
       
-      // TODO: Send to API
-      // await fetch('/api/partners/apply', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(formData)
-      // });
-      
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const delivered = await submitLead('partner_application', formData, lang, honeypot);
+      if (!delivered) {
+        throw new Error(t.form.send_error);
+      }
       
       setSubmitted(true);
     } catch (err) {
@@ -106,7 +104,9 @@ export default function PartnerApplyPage({ params }: { params: Promise<{ lang: s
         current_clients: 'Número Aproximado de Clientes Actuales',
         why_partner: '¿Por qué quieres ser partner de GDS?',
         
-        submit: 'Enviar Aplicación'
+        submit: 'Enviar Aplicación',
+        send_error: 'No pudimos enviar tu aplicación. Por favor envíanosla por WhatsApp.',
+        whatsapp: 'Enviar por WhatsApp'
       }
     },
     en: {
@@ -146,7 +146,9 @@ export default function PartnerApplyPage({ params }: { params: Promise<{ lang: s
         current_clients: 'Approximate Number of Current Clients',
         why_partner: 'Why do you want to be a GDS partner?',
         
-        submit: 'Submit Application'
+        submit: 'Submit Application',
+        send_error: 'We could not send your application. Please send it to us via WhatsApp.',
+        whatsapp: 'Send via WhatsApp'
       }
     }
   };
@@ -324,9 +326,34 @@ export default function PartnerApplyPage({ params }: { params: Promise<{ lang: s
               </div>
             </div>
             
+            {/* Honeypot: hidden from people, filled by bots */}
+            <input
+              type="text"
+              name="website_url"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              className="hidden"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+            />
+            
             {error && (
               <Alert variant="error">
-                {error}
+                {error}{' '}
+                <a
+                  href={whatsappLink(
+                    [
+                      isSpanish ? 'Hola GDS, quiero aplicar al programa de partners.' : 'Hi GDS, I want to apply to the partner program.',
+                      ...Object.entries(formData).map(([k, v]) => `${k}: ${Array.isArray(v) ? v.join(', ') : v}`),
+                    ].join('\n')
+                  )}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold underline"
+                >
+                  {t.form.whatsapp}
+                </a>
               </Alert>
             )}
             

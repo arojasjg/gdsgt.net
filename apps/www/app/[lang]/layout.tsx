@@ -1,9 +1,37 @@
+import '../globals.css';
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { Analytics } from '@/components/Analytics';
 import { Header, Footer, WhatsAppButton } from '@gds/ui';
 import { SITE_URL, ERP_URL, PHONE, EMAIL, ADDRESS, SOCIAL_PROFILES, CUSTOM_SOFTWARE_PATH } from '@/lib/site';
 
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title: 'GDS - Soluciones Integrales para tu Empresa',
+  description: 'Suite completa de ERP, BI, CRM, IA y Data Engineering. Software personalizado y equipos dedicados.',
+  applicationName: 'GDS',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon-32.png', type: 'image/png', sizes: '32x32' },
+      { url: '/icon-192.png', type: 'image/png', sizes: '192x192' },
+    ],
+    apple: '/apple-touch-icon.png',
+  },
+  manifest: '/site.webmanifest',
+  // Set these env vars after verifying the site in Google Search Console / Bing Webmaster Tools
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    other: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+      ? { 'msvalidate.01': process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION }
+      : undefined,
+  },
+};
+
 const locales = ['es', 'en'] as const;
 type Locale = (typeof locales)[number];
+
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
@@ -90,12 +118,15 @@ export default async function LangLayout({
   }
 
   return (
-    <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: entitySchema(lang as Locale) }} />
-      <Header lang={lang as 'es' | 'en'} />
-      {children}
-      <Footer lang={lang as 'es' | 'en'} />
-      <WhatsAppButton lang={lang as 'es' | 'en'} />
-    </>
+    <html lang={lang}>
+      <body>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: entitySchema(lang as Locale) }} />
+        <Header lang={lang as 'es' | 'en'} />
+        {children}
+        <Footer lang={lang as 'es' | 'en'} />
+        <WhatsAppButton lang={lang as 'es' | 'en'} />
+        <Analytics />
+      </body>
+    </html>
   );
 }

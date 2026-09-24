@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { track } from '@gds/analytics';
 import type { CustomSoftwareContent } from '@gds/content';
 import { whatsappLink } from '@/lib/site';
+import { submitLead } from '@/lib/leads';
 
 const fieldClass =
   'block w-full px-3 py-2 border border-secondary-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500';
@@ -41,6 +42,9 @@ export function ProjectForm({ t, lang }: { t: CustomSoftwareContent['form']; lan
     ].join('\n');
 
     window.open(whatsappLink(message), '_blank', 'noopener,noreferrer');
+
+    // Also record the lead (email / sheet / CRM) when the endpoint is configured
+    void submitLead('custom_software', form, lang);
   };
 
   return (

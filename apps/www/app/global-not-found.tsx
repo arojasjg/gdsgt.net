@@ -4,11 +4,20 @@
  * Custom 404 error page with helpful navigation
  */
 
+import './globals.css';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Button } from '@gds/ui';
 
-export default function NotFound() {
+export const metadata: Metadata = {
+  title: 'Página no encontrada | GDS',
+  robots: { index: false },
+};
+
+export default function GlobalNotFound() {
   return (
+    <html lang="es">
+      <body>
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-gray-100 flex items-center justify-center px-4">
       <div className="max-w-2xl w-full text-center">
         {/* 404 Illustration */}
@@ -88,5 +97,7 @@ export default function NotFound() {
         </p>
       </div>
     </div>
+      </body>
+    </html>
   );
 }

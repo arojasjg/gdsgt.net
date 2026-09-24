@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  experimental: {
+    globalNotFound: true,
+  },
   transpilePackages: ['@gds/ui', '@gds/seo', '@gds/content', '@gds/analytics'],
   async redirects() {
     return [

@@ -26,3 +26,10 @@ export const CUSTOM_SOFTWARE_PATH = '/software-a-la-medida';
 export function whatsappLink(message: string): string {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
+
+/**
+ * Case studies attribute specific results to real client companies. Keep them
+ * out of search engines and AI crawlers until each one has been validated
+ * with (and approved by) the client. Set to true once verified.
+ */
+export const CASE_STUDIES_VERIFIED = false;

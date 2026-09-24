@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next';
 import { getAllBlogPosts, getAllCaseStudies } from '@gds/content';
-import { SITE_URL, CUSTOM_SOFTWARE_PATH } from '@/lib/site';
+import { SITE_URL, CUSTOM_SOFTWARE_PATH, CASE_STUDIES_VERIFIED } from '@/lib/site';
 
 type Entry = MetadataRoute.Sitemap[number];
 
@@ -34,8 +34,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...localized('', 'weekly', 1.0),
     ...localized(CUSTOM_SOFTWARE_PATH, 'weekly', 0.95),
-    ...localized('/blog', 'weekly', 0.8),
-    ...localized('/case-studies', 'monthly', 0.8),
+    // Blog and case studies are Spanish-only (the /en copies are noindex)
+    { url: `${SITE_URL}/es/blog`, changeFrequency: 'weekly', priority: 0.8 },
+    ...(CASE_STUDIES_VERIFIED
+      ? [{ url: `${SITE_URL}/es/case-studies`, changeFrequency: 'monthly' as const, priority: 0.8 }]
+      : []),
     ...localized('/calculators/roi-erp', 'monthly', 0.6),
     ...localized('/calculators/tco-erp-vs-excel', 'monthly', 0.6),
     ...localized('/partners', 'monthly', 0.5),
@@ -50,7 +53,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     })),
 
-    ...caseStudies.map((cs) => ({
+    ...(CASE_STUDIES_VERIFIED ? caseStudies : []).map((cs) => ({
       url: `${SITE_URL}/es/case-studies/${cs.slug}`,
       changeFrequency: 'yearly' as const,
       priority: 0.6,

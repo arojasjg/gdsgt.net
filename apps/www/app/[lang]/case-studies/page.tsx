@@ -5,6 +5,7 @@
  */
 
 import { Metadata } from 'next';
+import { CASE_STUDIES_VERIFIED } from '@/lib/site';
 import Link from 'next/link';
 import { HeroSection, CTASection } from '@gds/ui/layouts';
 import { Card, Badge } from '@gds/ui';
@@ -17,6 +18,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   
   return generateSEOMetadata(
     {
+      // Content is Spanish-only: keep the /en copy out of the index
+      noindex: lang === 'en' || !CASE_STUDIES_VERIFIED,
       title: isSpanish ? 'Casos de Éxito' : 'Success Stories',
       description: isSpanish 
         ? 'Descubre cómo empresas reales transformaron su operación con GDS ONE. Resultados medibles, historias reales.'
@@ -27,7 +30,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     },
     {
       name: 'GDS ONE',
-      domain: 'www.gds.com',
+      domain: 'www.gdsgt.net',
       description: 'Enterprise Resource Planning',
       locales: ['es', 'en'],
       defaultLocale: 'es'

@@ -35,13 +35,15 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   
   return generateSEOMetadata(
     {
+      // Content is Spanish-only: keep the /en copy out of the index
+      noindex: lang === 'en',
       title: post.title,
       description: post.meta_description,
       keywords: post.keywords
     },
     {
       name: 'GDS ONE',
-      domain: 'www.gds.com',
+      domain: 'www.gdsgt.net',
       description: 'Enterprise Resource Planning',
       locales: ['es', 'en'],
       defaultLocale: 'es'

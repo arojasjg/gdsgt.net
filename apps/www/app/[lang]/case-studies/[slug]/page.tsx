@@ -11,6 +11,7 @@ import { HeroSection, CTASection } from '@gds/ui/layouts';
 import { Card, Badge, Accordion, AccordionItem } from '@gds/ui';
 import { generateMetadata as generateSEOMetadata, generateArticleSchema, generateOrganizationSchema, generateBreadcrumbSchema } from '@gds/seo';
 import { getCaseStudyBySlug, getAllCaseStudies } from '@gds/content';
+import { CASE_STUDIES_VERIFIED } from '@/lib/site';
 
 export async function generateStaticParams() {
   const caseStudies = getAllCaseStudies();
@@ -37,6 +38,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   
   return generateSEOMetadata(
     {
+      // Content is Spanish-only: keep the /en copy out of the index
+      noindex: lang === 'en' || !CASE_STUDIES_VERIFIED,
       title: isSpanish
         ? `${caseStudy.title} | Caso de Éxito GDS ONE`
         : `${caseStudy.title} | GDS ONE Success Story`,

@@ -18,6 +18,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   
   return generateSEOMetadata(
     {
+      // Content is Spanish-only: keep the /en copy out of the index
+      noindex: lang === 'en',
       title: isSpanish ? 'Blog ERP' : 'ERP Blog',
       description: isSpanish 
         ? 'Guías, tendencias, y mejores prácticas sobre ERP. Aprende cómo elegir, implementar, y optimizar tu sistema ERP.'
@@ -28,7 +30,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     },
     {
       name: 'GDS ONE',
-      domain: 'www.gds.com',
+      domain: 'www.gdsgt.net',
       description: 'Enterprise Resource Planning',
       locales: ['es', 'en'],
       defaultLocale: 'es'

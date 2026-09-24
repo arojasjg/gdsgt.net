@@ -28,7 +28,6 @@ Typical projects: inventory and order systems, route sales apps, work-order and 
 ## Resources
 
 - [Blog](https://www.gdsgt.net/es/blog): ERP, digital transformation and technology guides for Latin American companies
-- [Case studies](https://www.gdsgt.net/es/case-studies)
 - [ROI calculator](https://www.gdsgt.net/es/calculators/roi-erp)
 - [TCO calculator ERP vs Excel](https://www.gdsgt.net/es/calculators/tco-erp-vs-excel)
 

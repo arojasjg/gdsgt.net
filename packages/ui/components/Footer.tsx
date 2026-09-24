@@ -68,6 +68,7 @@ export const Footer: React.FC<FooterProps> = ({ lang = 'es' }) => {
       legal: 'Legal',
       privacy: 'Política de Privacidad',
       terms: 'Términos y Condiciones',
+      cookies: 'Preferencias de cookies',
       copyright: '© 2026 GDS ONE. Todos los derechos reservados. Latinoamérica.',
     },
     en: {
@@ -97,6 +98,7 @@ export const Footer: React.FC<FooterProps> = ({ lang = 'es' }) => {
       legal: 'Legal',
       privacy: 'Privacy Policy',
       terms: 'Terms and Conditions',
+      cookies: 'Cookie preferences',
       copyright: '© 2026 GDS ONE. All rights reserved. Latin America.',
     }
   };
@@ -259,6 +261,13 @@ export const Footer: React.FC<FooterProps> = ({ lang = 'es' }) => {
               <a href={`${urls.www}/terms`} className="hover:text-white transition-colors">
                 {t.terms}
               </a>
+              <button
+                type="button"
+                onClick={() => window.dispatchEvent(new Event('gds:open-consent'))}
+                className="hover:text-white transition-colors"
+              >
+                {t.cookies}
+              </button>
             </div>
           </div>
         </div>

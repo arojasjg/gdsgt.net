@@ -1,5 +1,5 @@
 /**
- * Case Study: Textiles Modernos
+ * Case Study: Dermantigua
  * Industry: Manufacturing
  * Country: El Salvador
  * Results: 45% efficiency increase, 35% waste reduction
@@ -17,12 +17,11 @@ export const textilesModernos = {
     revenue: '$5M USD/año',
     founded: '2008',
     location: 'San Salvador',
-    website: 'www.textilesmodernos.com.sv',
     logo: '🏭'
   },
   challenge: {
     title: 'El Desafío',
-    description: 'Textiles Modernos tenía costos de producción impredecibles y desperdicios altos que afectaban su competitividad.',
+    description: 'Dermantigua tenía costos de producción impredecibles y desperdicios altos que afectaban su competitividad.',
     problems: [
       {
         icon: '📉',
@@ -58,7 +57,7 @@ export const textilesModernos = {
     description: 'Implementamos GDS ONE con enfoque en control de producción y optimización de costos.',
     implementation: {
       duration: '50 días',
-      team: '3 personas (GDS ONE) + 6 personas (Textiles Modernos)',
+      team: '3 personas (GDS ONE) + 6 personas (Dermantigua)',
       modules: ['Producción', 'BOM', 'Costos', 'Inventario', 'Compras', 'IA'],
       timeline: [
         {
@@ -120,7 +119,7 @@ export const textilesModernos = {
   },
   results: {
     title: 'Los Resultados',
-    description: 'Después de 4 meses, Textiles Modernos transformó su operación de producción.',
+    description: 'Después de 4 meses, Dermantigua transformó su operación de producción.',
     metrics: [
       {
         metric: '45%',
@@ -263,7 +262,7 @@ export const textilesModernos = {
     link: '/es/demo?industry=manufacturing'
   },
   seo: {
-    meta_description: 'Caso de éxito: Textiles Modernos aumentó eficiencia 45% y redujo desperdicios 35% con GDS ONE. ROI 516% en primer año. Ahorro: $85,000/año.',
+    meta_description: 'Caso de éxito: Dermantigua aumentó eficiencia 45% y redujo desperdicios 35% con GDS ONE. ROI 516% en primer año. Ahorro: $85,000/año.',
     keywords: ['caso éxito manufactura', 'ERP textil', 'producción El Salvador', 'control desperdicios', 'IA producción'],
     og_image: '/case-studies/og-textiles-modernos.jpg'
   },
@@ -271,5 +270,5 @@ export const textilesModernos = {
   updated_date: '2026-01-07',
   featured: true,
   category: 'manufacturing',
-  tags: ['Manufactura', 'Textil', 'IA', 'El Salvador', 'Eficiencia']
+  tags: ['Manufactura', 'Textil', 'IA', 'Guatemala', 'Eficiencia']
 };

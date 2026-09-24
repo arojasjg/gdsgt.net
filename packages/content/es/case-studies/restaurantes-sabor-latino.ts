@@ -1,5 +1,5 @@
 /**
- * Case Study: Restaurantes Sabor Latino
+ * Case Study: Istmo Entertainment
  * Industry: Restaurants
  * Country: Panama
  * Results: 40% waste reduction, 25% increase in table turnover
@@ -18,7 +18,6 @@ export const restaurantesSaborLatino = {
     revenue: '$4M USD/año',
     founded: '2014',
     location: 'Ciudad de Panamá',
-    website: 'www.saborlatino.pa',
     logo: '🍽️'
   },
   challenge: {
@@ -59,7 +58,7 @@ export const restaurantesSaborLatino = {
     description: 'Implementamos GDS ONE con enfoque en control de inventario de alimentos.',
     implementation: {
       duration: '40 días',
-      team: '3 personas (GDS ONE) + 6 personas (Sabor Latino)',
+      team: '3 personas (GDS ONE) + 6 personas (Istmo Entertainment)',
       modules: ['Inventario Perecedero', 'Recetas', 'Compras', 'POS', 'IA', 'Multi-Local'],
       timeline: [
         {
@@ -121,7 +120,7 @@ export const restaurantesSaborLatino = {
   },
   results: {
     title: 'Los Resultados',
-    description: 'En 4 meses, Sabor Latino transformó su gestión de alimentos.',
+    description: 'En 4 meses, Istmo Entertainment transformó su gestión de alimentos.',
     metrics: [
       {
         metric: '40%',
@@ -264,7 +263,7 @@ export const restaurantesSaborLatino = {
     link: '/es/demo?industry=restaurant'
   },
   seo: {
-    meta_description: 'Caso de éxito: Restaurantes Sabor Latino redujo merma 40% con GDS ONE IA. 8 locales optimizados. ROI 354%. Ahorro+ventas: $88,600/año.',
+    meta_description: 'Caso de éxito: Istmo Entertainment redujo merma 40% con GDS ONE IA. 8 locales optimizados. ROI 354%. Ahorro+ventas: $88,600/año.',
     keywords: ['caso éxito restaurantes', 'control merma', 'inventario perecedero', 'ERP restaurantes', 'Panamá'],
     og_image: '/case-studies/og-sabor-latino.jpg'
   },
@@ -272,5 +271,5 @@ export const restaurantesSaborLatino = {
   updated_date: '2026-01-11',
   featured: true,
   category: 'restaurant',
-  tags: ['Restaurantes', 'Control de Merma', 'IA', 'Panamá', 'Multi-Local']
+  tags: ['Restaurantes', 'Control de Merma', 'IA', 'Guatemala', 'Multi-Local']
 };

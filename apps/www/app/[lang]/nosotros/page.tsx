@@ -21,6 +21,7 @@ const content = {
     facts: [
       ['Nombre', 'GDS - Grupo de Soluciones'],
       ['Fundación', '2009'],
+      ['Clientes', 'Más de 100 empresas'],
       ['Sede', 'Guatemala, Guatemala'],
       ['Cobertura', 'Guatemala, Centroamérica y Latinoamérica'],
       ['Idiomas de atención', 'Español e inglés'],
@@ -59,6 +60,7 @@ const content = {
     facts: [
       ['Name', 'GDS - Grupo de Soluciones'],
       ['Founded', '2009'],
+      ['Clients', '100+ companies'],
       ['Headquarters', 'Guatemala City, Guatemala'],
       ['Coverage', 'Guatemala, Central America and Latin America'],
       ['Languages', 'Spanish and English'],

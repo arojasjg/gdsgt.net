@@ -9,8 +9,8 @@ export const whatIsErp2026 = {
   title: 'What is an ERP and Why Your Business Needs It in 2026?',
   excerpt: 'Discover what an ERP system is, how it works, and why it\'s essential for modern businesses in Latin America. Complete guide with real examples and success stories.',
   author: {
-    name: 'GDS ONE Team',
-    position: 'ERP Experts',
+    name: 'José Rojas',
+    position: 'GDS Guatemala',
     avatar: '👥'
   },
   published_date: '2026-01-06',

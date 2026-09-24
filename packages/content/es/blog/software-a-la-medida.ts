@@ -5,7 +5,7 @@
 
 import type { BlogPost } from '../blog';
 
-const author = { name: 'Equipo GDS', position: 'Desarrollo de software a la medida' };
+const author = { name: 'José Rojas', position: 'GDS Guatemala' };
 
 const cta = {
   title: '¿Quieres saber cuánto costaría tu sistema?',

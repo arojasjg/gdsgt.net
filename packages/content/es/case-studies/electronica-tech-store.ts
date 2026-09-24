@@ -1,5 +1,5 @@
 /**
- * Case Study: Electrónica Tech Store
+ * Case Study: Econoluz
  * Industry: Retail - Electronics
  * Country: Nicaragua
  * Results: From Excel to ERP in 30 days, 500% ROI, 20% sales increase
@@ -18,12 +18,11 @@ export const electronicaTechStore = {
     revenue: '$1.5M USD/año',
     founded: '2016',
     location: 'Managua, Nicaragua',
-    website: 'www.techstore.com.ni',
     logo: '💻'
   },
   challenge: {
     title: 'El Desafío',
-    description: 'Tech Store operaba 100% en Excel. El crecimiento hizo que el sistema colapsara.',
+    description: 'Econoluz operaba 100% en Excel. El crecimiento hizo que el sistema colapsara.',
     problems: [
       {
         icon: '📊',
@@ -65,7 +64,7 @@ export const electronicaTechStore = {
     description: 'Implementación express de GDS ONE, enfocada en rapidez y simplicidad.',
     implementation: {
       duration: '30 días',
-      team: '2 personas (GDS ONE) + 3 personas (Tech Store)',
+      team: '2 personas (GDS ONE) + 3 personas (Econoluz)',
       modules: ['Inventario', 'Ventas', 'POS', 'Compras', 'Reportes', 'App Móvil'],
       timeline: [
         {
@@ -278,7 +277,7 @@ export const electronicaTechStore = {
     link: '/es/demo?from=excel'
   },
   seo: {
-    meta_description: 'Caso de éxito: Tech Store pasó de Excel a GDS ONE en 30 días. Ventas +20%, errores -95%, ROI 1065%. Ahorro: $96,000/año.',
+    meta_description: 'Caso de éxito: Econoluz pasó de Excel a GDS ONE en 30 días. Ventas +20%, errores -95%, ROI 1065%. Ahorro: $96,000/año.',
     keywords: ['Excel a ERP', 'caso éxito retail', 'electrónicos Nicaragua', 'migración Excel', 'implementación rápida'],
     og_image: '/case-studies/og-tech-store.jpg'
   },
@@ -286,5 +285,5 @@ export const electronicaTechStore = {
   updated_date: '2026-01-12',
   featured: true,
   category: 'retail',
-  tags: ['Retail', 'Excel a ERP', 'Implementación Rápida', 'Nicaragua', 'ROI 1000%+']
+  tags: ['Retail', 'Excel a ERP', 'Implementación Rápida', 'Guatemala', 'ROI 1000%+']
 };

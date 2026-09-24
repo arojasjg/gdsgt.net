@@ -36,9 +36,9 @@ Estado del repositorio `gdsgt.net` (app `apps/www`, Next.js 16).
 | ✅ | Logo | De 700 KB a 66 KB. |
 | ✅ | Política de privacidad | Sección de cookies con Google y Meta. |
 | ✅ | Botón flotante de WhatsApp | Ahora se mide como conversión y tiene mensaje propio en la página del servicio. |
-| 🔴 | **Casos de éxito** | Originalmente eran empresas ficticias ("Distribuidora La Económica", "Textiles Modernos"…) renombradas con clientes reales conservando cifras inventadas. **Están ocultos para Google y los LLMs** (`noindex`, fuera del sitemap y de llms.txt) pero siguen visibles en el sitio. Valida cada uno con el cliente, corrige los textos y cambia `CASE_STUDIES_VERIFIED` a `true` en `apps/www/lib/site.ts`. Si no se pueden validar, conviene retirarlos. |
-| 🟠 | "+500 empresas en Latinoamérica" | Confirmar la cifra o ajustarla. |
-| 🟠 | Autores del blog | Los artículos antiguos tienen autores como "Carlos Méndez" o "Lic. Patricia Hernández". Si no son personas reales de GDS, cambiarlos por "Equipo GDS" o por autores reales con perfil de LinkedIn (señal de confianza para Google). |
+| ✅ | Casos de éxito | Validados por GDS. Se corrigieron nombres viejos ("La Económica", "Tech Store"…), etiquetas de país y sitios web inventados. Vuelven a estar indexados. |
+| ✅ | Cifra de clientes | Actualizada a "+100 empresas" (sitio, schema, llms.txt, página Nosotros). |
+| ✅ | Autores del blog | Todos los artículos firmados por José Rojas, con enlace a la página Nosotros. Recomendado: agregar foto y perfil de LinkedIn de José. |
 | 🟠 | Marca en 3 dominios | Evaluar consolidación (gdsgt.net / erp.grupogds.co / correo @grupogds.co). |
 | 🟡 | Reseñas | Cuando existan reseñas reales (Google, Clutch), mostrarlas en el sitio. |
 | 🟡 | Imágenes de clientes | Convertir a WebP (menor prioridad; next/image ya las optimiza). |

@@ -31,6 +31,7 @@ export const customSoftwareEn: CustomSoftwareContent = {
     primaryCta: 'Book a free assessment',
     secondaryCta: 'Get a quote on WhatsApp',
     trust: [
+      '100+ companies trust GDS',
       'Team based in Guatemala',
       'First version in weeks, not months',
       'Hosting, support and improvements included',

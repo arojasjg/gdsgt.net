@@ -12,25 +12,27 @@
     "indexnow": "node scripts/indexnow.mjs"
   },
   "dependencies": {
-    "@gds/ui": "workspace:*",
-    "@gds/seo": "workspace:*",
-    "@gds/content": "workspace:*",
     "@gds/analytics": "workspace:*",
     "@gds/calculators": "workspace:*",
+    "@gds/content": "workspace:*",
+    "@gds/seo": "workspace:*",
+    "@gds/ui": "workspace:*",
+    "clsx": "^2.1.0",
     "next": "^16.1.1",
+    "nodemailer": "^10.0.10",
     "react": "^19.2.3",
-    "react-dom": "^19.2.3",
-    "clsx": "^2.1.0"
+    "react-dom": "^19.2.3"
   },
   "devDependencies": {
     "@types/node": "^20.11.5",
+    "@types/nodemailer": "^8.0.2",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "typescript": "^5.3.3",
-    "tailwindcss": "^3.4.1",
     "autoprefixer": "^10.4.17",
-    "postcss": "^8.4.33",
     "eslint": "^9.39.2",
-    "eslint-config-next": "^16.1.1"
+    "eslint-config-next": "^16.1.1",
+    "postcss": "^8.4.33",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3"
   }
 }

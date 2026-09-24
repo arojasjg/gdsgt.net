@@ -4,6 +4,26 @@ Todo se configura con variables de entorno en `apps/www/.env.local` en el servid
 
 ## 1. Analítica y publicidad
 
+### Cómo encontrar tus IDs
+
+**Google Analytics 4 (`G-…`)**
+1. Entra a analytics.google.com con la cuenta de Google de la empresa.
+2. Abajo a la izquierda: ⚙️ **Administrar**.
+3. Columna *Propiedad* → **Flujos de datos** → clic en el flujo web de `www.gdsgt.net`.
+4. Arriba a la derecha verás el **ID de medición**: `G-XXXXXXXXXX`.
+5. Si no existe propiedad: Administrar → **Crear → Propiedad** ("GDS Web", zona horaria Guatemala, moneda GTQ) → Plataforma **Web** → URL `https://www.gdsgt.net`. Te dará el `G-…`.
+
+**Google Ads (`AW-…`)**, solo si harás campañas: ads.google.com → Herramientas → **Conversiones** → Configuración → *Etiqueta de Google* → el ID `AW-…`.
+
+**Meta Pixel**
+1. Entra a business.facebook.com/events_manager con la cuenta que administra la página de Facebook de GDS.
+2. Menú izquierdo: **Orígenes de datos**. Si ya hay un píxel, selecciónalo: el **ID** (15–16 dígitos) aparece debajo del nombre y en *Configuración*.
+3. Si no hay: **Conectar orígenes de datos → Web → Conjunto de datos (Pixel)** → nombre "GDS Web" → elige "Configurar manualmente" y copia solo el ID (el código ya está en el sitio).
+4. En *Configuración* del píxel agrega el dominio `gdsgt.net` y verifícalo en Business Manager → Seguridad de la marca → Dominios.
+
+Pon los IDs en las variables de abajo.
+
+
 | Variable | Dónde se obtiene | Ejemplo |
 |---|---|---|
 | `NEXT_PUBLIC_GOOGLE_TAG_IDS` | GA4 → Administrar → Flujos de datos (ID `G-…`). Google Ads → Herramientas → Conversiones (ID `AW-…`). Separar con coma. | `G-ABC123,AW-123456789` |
@@ -24,9 +44,42 @@ En GA4, marca `generate_lead` y `click_whatsapp` como **eventos clave** e impór
 
 ## 2. Recepción de contactos (`/api/leads`)
 
-Configura al menos una opción. Si no hay ninguna, el formulario de partners pedirá enviar por WhatsApp.
+Cada formulario se envía a **todos** los canales configurados. Si ninguno está configurado, el formulario de partners pide enviar por WhatsApp.
 
-### Opción A: Google Sheets (gratis, recomendado para empezar)
+### Correo a info@gdsgt.net (SMTP de Plesk)
+
+En Plesk → Correo, usa la cuenta `info@gdsgt.net` (o crea `web@gdsgt.net` solo para enviar):
+
+```
+LEADS_EMAIL_TO=info@gdsgt.net
+LEADS_EMAIL_FROM=GDS Web <info@gdsgt.net>
+SMTP_HOST=mail.gdsgt.net      # o el servidor que indique Plesk
+SMTP_PORT=465
+SMTP_USER=info@gdsgt.net
+SMTP_PASS=la-contraseña-del-buzón
+```
+
+Alternativa sin servidor de correo: `RESEND_API_KEY` (resend.com).
+
+### GDS ONE ERP
+
+El sitio envía un `POST` JSON a `GDSONE_LEADS_URL`, con `Authorization: Bearer <GDSONE_API_KEY>` si la defines:
+
+```json
+{
+  "origin": "www.gdsgt.net",
+  "source": "custom_software",
+  "source_label": "Software a la medida",
+  "name": "Ana López", "company": "Acme", "email": "", "phone": "5555-5555",
+  "country": "", "message": "App de pedidos para vendedores",
+  "fields": { "...todos los campos del formulario..." },
+  "lang": "es", "page": "/es/software-a-la-medida", "received_at": "2026-09-24T15:48:24Z"
+}
+```
+
+`source` puede ser `custom_software`, `partner_application` o `contact`. Si el ERP espera otro formato o autenticación, pásame la documentación de su API y ajusto el envío.
+
+### Opcional: Google Sheets u otra herramienta (webhook)
 
 1. Crea una hoja de Google Sheets llamada "Leads web".
 2. Menú **Extensiones → Apps Script**, pega esto y guarda:
@@ -48,12 +101,6 @@ function doPost(e) {
 
 La misma variable sirve para Make, Zapier, n8n o el webhook de tu CRM.
 
-### Opción B: correo (Resend)
-
-1. Crea una cuenta en resend.com y verifica el dominio `gdsgt.net` (registros DNS).
-2. Variables: `RESEND_API_KEY`, `LEADS_EMAIL_TO` (ej. `ventas@gdsgt.net,gerencia@gdsgt.net`) y `LEADS_EMAIL_FROM` (ej. `GDS Web <web@gdsgt.net>`).
-
-Puedes usar A y B a la vez.
 
 ## 3. IndexNow (Bing / ChatGPT Search)
 
@@ -67,11 +114,7 @@ Envía todas las URLs del sitemap. La clave ya está publicada en `public/bcccc0
 
 ## 4. Casos de éxito
 
-Cuando cada caso esté validado con su cliente, cambia en `apps/www/lib/site.ts`:
-
-```ts
-export const CASE_STUDIES_VERIFIED = true;
-```
+Ya están marcados como validados (`CASE_STUDIES_VERIFIED = true` en `apps/www/lib/site.ts`). Si en el futuro agregas un caso sin aprobación del cliente, vuelve a ponerlo en `false`.
 
 ## 5. Perfiles sociales en el schema
 

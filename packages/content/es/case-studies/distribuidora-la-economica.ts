@@ -1,5 +1,5 @@
 /**
- * Case Study: Distribuidora La Económica
+ * Case Study: Comercial Kerly
  * Industry: Distribution
  * Country: Guatemala
  * Results: 75% reduction in overstock, 90% reduction in stockouts
@@ -22,7 +22,7 @@ export const distribuidoraLaEconomica = {
   },
   challenge: {
     title: 'El Desafío',
-    description: 'La Económica enfrentaba problemas críticos de gestión de inventario que afectaban su rentabilidad y servicio al cliente.',
+    description: 'Comercial Kerly enfrentaba problemas críticos de gestión de inventario que afectaban su rentabilidad y servicio al cliente.',
     problems: [
       {
         icon: '📦',
@@ -58,7 +58,7 @@ export const distribuidoraLaEconomica = {
     description: 'Implementamos GDS ONE con enfoque en optimización de inventario usando inteligencia artificial.',
     implementation: {
       duration: '42 días',
-      team: '3 personas (GDS ONE) + 4 personas (La Económica)',
+      team: '3 personas (GDS ONE) + 4 personas (Comercial Kerly)',
       modules: ['Inventario con IA', 'Compras', 'Ventas', 'Reportes'],
       timeline: [
         {
@@ -272,7 +272,7 @@ export const distribuidoraLaEconomica = {
     link: '/es/demo?industry=distribution'
   },
   seo: {
-    meta_description: 'Caso de éxito: Distribuidora La Económica redujo sobre-stock en 75% y faltantes en 90% con GDS ONE IA. ROI 816% en primer año. Ahorro: $68,000/año.',
+    meta_description: 'Caso de éxito: Comercial Kerly redujo sobre-stock en 75% y faltantes en 90% con GDS ONE IA. ROI 816% en primer año. Ahorro: $68,000/año.',
     keywords: ['caso de éxito ERP', 'distribuidora Guatemala', 'ERP con IA', 'optimización inventario', 'GDS ONE caso de éxito'],
     og_image: '/case-studies/og-la-economica.jpg'
   },

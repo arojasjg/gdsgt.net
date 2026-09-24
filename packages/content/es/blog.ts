@@ -82,8 +82,8 @@ export const blogPosts: BlogPost[] = [
     keywords: ['elegir ERP', 'ERP para PYME', 'selección ERP', 'criterios ERP', 'comparación ERP'],
     
     author: {
-      name: 'Carlos Méndez',
-      position: 'Consultor ERP Senior'
+      name: 'José Rojas',
+      position: 'GDS Guatemala'
     },
     published_date: '2024-01-15',
     
@@ -248,8 +248,8 @@ export const blogPosts: BlogPost[] = [
     keywords: ['implementación ERP', 'errores ERP', 'fracaso ERP', 'éxito ERP', 'proyecto ERP'],
     
     author: {
-      name: 'Ing. Roberto Sánchez',
-      position: 'Director de Implementaciones'
+      name: 'José Rojas',
+      position: 'GDS Guatemala'
     },
     published_date: '2024-01-22',
     
@@ -424,8 +424,8 @@ export const blogPosts: BlogPost[] = [
     keywords: ['ROI ERP', 'retorno inversión ERP', 'justificar ERP', 'costo beneficio ERP', 'business case ERP'],
     
     author: {
-      name: 'Lic. Patricia González',
-      position: 'Consultora Financiera'
+      name: 'José Rojas',
+      position: 'GDS Guatemala'
     },
     published_date: '2024-02-05',
     
@@ -592,8 +592,8 @@ export const blogPosts: BlogPost[] = [
     keywords: ['ERP vs Excel', 'migrar de Excel a ERP', 'cuándo necesito ERP', 'Excel vs ERP', 'limitaciones Excel'],
     
     author: {
-      name: 'Carlos Méndez',
-      position: 'Consultor ERP Senior'
+      name: 'José Rojas',
+      position: 'GDS Guatemala'
     },
     published_date: '2024-02-12',
     
@@ -785,8 +785,8 @@ export const blogPosts: BlogPost[] = [
     keywords: ['tendencias ERP 2024', 'IA en ERP', 'ERP cloud', 'ERP móvil', 'futuro ERP'],
     
     author: {
-      name: 'Ing. Roberto Sánchez',
-      position: 'Director de Producto'
+      name: 'José Rojas',
+      position: 'GDS Guatemala'
     },
     published_date: '2024-02-20',
     

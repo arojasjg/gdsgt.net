@@ -1,5 +1,5 @@
 /**
- * Case Study: Comercial del Norte
+ * Case Study: Soluferre
  * Industry: Distribution
  * Country: Guatemala
  * Results: Migrated from SAP to GDS ONE, 84% cost reduction, 30% more productive salespeople
@@ -18,7 +18,6 @@ export const comercialDelNorte = {
     revenue: '$3.5M USD/año',
     founded: '2015',
     location: 'Guatemala City',
-    website: 'www.comercialdelnorte.com.gt',
     logo: '🚚'
   },
   challenge: {
@@ -138,7 +137,7 @@ export const comercialDelNorte = {
   },
   results: {
     title: 'Los Resultados',
-    description: 'La migración fue un éxito rotundo. Comercial del Norte no mira atrás.',
+    description: 'La migración fue un éxito rotundo. Soluferre no mira atrás.',
     metrics: [
       {
         metric: '84%',
@@ -318,7 +317,7 @@ export const comercialDelNorte = {
     link: '/es/migracion-sap'
   },
   seo: {
-    meta_description: 'Caso de éxito: Comercial del Norte migró de SAP a GDS ONE. Ahorro: 84% ($28,200/año). Vendedores 30% más productivos. ROI en 2 meses.',
+    meta_description: 'Caso de éxito: Soluferre migró de SAP a GDS ONE. Ahorro: 84% ($28,200/año). Vendedores 30% más productivos. ROI en 2 meses.',
     keywords: ['migración SAP', 'SAP a GDS ONE', 'alternativa SAP', 'caso éxito migración', 'Guatemala'],
     og_image: '/case-studies/og-comercial-del-norte.jpg'
   },

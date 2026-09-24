@@ -73,7 +73,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ lang:
     dateModified: post.updated_date || post.published_date,
     author: {
       name: post.author.name,
-      url: 'https://www.gdsgt.net',
+      url: `https://www.gdsgt.net/${lang}/nosotros`,
     },
     publisher: {
       name: 'GDS ONE',

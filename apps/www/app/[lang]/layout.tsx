@@ -55,8 +55,8 @@ function entitySchema(lang: Locale): string {
         logo: `${SITE_URL}/logo.png`,
         image: `${SITE_URL}/og-default.png`,
         description: isSpanish
-          ? 'Empresa guatemalteca de software empresarial: GDS ONE ERP, Business Intelligence, CRM, IA, Data Engineering y desarrollo de software y apps a la medida desde Q2,500 al mes.'
-          : 'Guatemalan business software company: GDS ONE ERP, Business Intelligence, CRM, AI, Data Engineering and custom software and app development from Q2,500 per month.',
+          ? 'Empresa guatemalteca de software empresarial con más de 100 empresas clientes: GDS ONE ERP, Business Intelligence, CRM, IA, Data Engineering y desarrollo de software y apps a la medida desde Q2,500 al mes.'
+          : 'Guatemalan business software company serving 100+ client companies: GDS ONE ERP, Business Intelligence, CRM, AI, Data Engineering and custom software and app development from Q2,500 per month.',
         foundingDate: '2009',
         telephone: PHONE,
         email: EMAIL,

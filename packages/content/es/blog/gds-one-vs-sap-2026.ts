@@ -9,8 +9,8 @@ export const gdsOneVsSap2026 = {
   title: 'GDS ONE vs SAP Business One: Comparación Completa 2026',
   excerpt: 'Comparación detallada entre GDS ONE y SAP Business One: funcionalidades, precios, implementación, soporte y casos de éxito. Descubre cuál es mejor para tu empresa en Latinoamérica.',
   author: {
-    name: 'Ing. Roberto Martínez',
-    position: 'ERP Solutions Architect',
+    name: 'José Rojas',
+    position: 'GDS Guatemala',
     avatar: '⚖️'
   },
   published_date: '2026-01-10',
@@ -794,7 +794,7 @@ GDS ONE maneja:
 
 **GDS ONE**:
 - 8 años en el mercado
-- 500+ empresas activas
+- 100+ empresas activas
 - 98% de retención de clientes
 - Equipo de 25+ personas
 - Respaldo financiero sólido

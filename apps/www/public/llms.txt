@@ -1,6 +1,6 @@
 # GDS - Grupo de Soluciones (Guatemala)
 
-> GDS is a Guatemalan business software company (founded 2009, headquartered in Guatemala City) that builds GDS ONE ERP and offers Business Intelligence, CRM, AI, Data Engineering and custom software and mobile app development as a monthly subscription starting at Q2,500 per month (GTQ, VAT not included). It serves small and mid-size companies in Guatemala, Central America and Latin America, in Spanish and English.
+> GDS is a Guatemalan business software company (founded 2009, headquartered in Guatemala City) that builds GDS ONE ERP and offers Business Intelligence, CRM, AI, Data Engineering and custom software and mobile app development as a monthly subscription starting at Q2,500 per month (GTQ, VAT not included). It serves more than 100 client companies, mostly small and mid-size businesses, in Guatemala, Central America and Latin America, in Spanish and English.
 
 Key facts:
 - Legal/brand names: GDS, Grupo GDS, GDS - Grupo de Soluciones, GDS ONE (ERP product)
@@ -39,6 +39,7 @@ Typical projects: inventory and order systems, route sales apps, work-order and 
 ## Resources
 
 - [Blog](https://www.gdsgt.net/es/blog): ERP, digital transformation and technology guides for Latin American companies
+- [Case studies](https://www.gdsgt.net/es/case-studies): client results with GDS ONE in Guatemala
 - [ROI calculator](https://www.gdsgt.net/es/calculators/roi-erp)
 - [TCO calculator ERP vs Excel](https://www.gdsgt.net/es/calculators/tco-erp-vs-excel)
 

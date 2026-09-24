@@ -9,8 +9,8 @@ export const iaTransformandoErp2026 = {
   title: 'Cómo la Inteligencia Artificial Está Transformando los ERP en 2026',
   excerpt: 'La IA ha revolucionado los sistemas ERP. Descubre cómo el machine learning, predicciones inteligentes y asistentes con IA están cambiando la gestión empresarial en Latinoamérica.',
   author: {
-    name: 'Dr. María González',
-    position: 'AI & Data Science Lead',
+    name: 'José Rojas',
+    position: 'GDS Guatemala',
     avatar: '🤖'
   },
   published_date: '2026-01-08',

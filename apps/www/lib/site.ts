@@ -32,4 +32,4 @@ export function whatsappLink(message: string): string {
  * out of search engines and AI crawlers until each one has been validated
  * with (and approved by) the client. Set to true once verified.
  */
-export const CASE_STUDIES_VERIFIED = false;
+export const CASE_STUDIES_VERIFIED = true;

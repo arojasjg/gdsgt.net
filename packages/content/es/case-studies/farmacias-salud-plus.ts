@@ -272,5 +272,5 @@ export const farmaciasSaludPlus = {
   updated_date: '2026-01-08',
   featured: true,
   category: 'retail',
-  tags: ['Retail', 'Farmacias', 'Multi-Sucursal', 'Honduras', 'IA']
+  tags: ['Retail', 'Farmacias', 'Multi-Sucursal', 'Guatemala', 'IA']
 };

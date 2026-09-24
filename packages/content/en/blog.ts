@@ -54,8 +54,8 @@ export const blogPosts: BlogPost[] = [
     meta_description: 'Complete guide to choosing ERP for SMB in 2024. Evaluation criteria, mistakes to avoid, and selection checklist.',
     keywords: ['choose ERP', 'ERP for SMB', 'ERP selection', 'ERP criteria', 'ERP comparison'],
     author: {
-      name: 'Carlos Méndez',
-      position: 'Senior ERP Consultant'
+      name: 'José Rojas',
+      position: 'GDS Guatemala'
     },
     published_date: '2024-01-15',
     category: 'guias',
@@ -92,8 +92,8 @@ export const blogPosts: BlogPost[] = [
     meta_description: '10 common mistakes in ERP implementation and how to avoid them. Practical guide to ensure your ERP project success.',
     keywords: ['ERP implementation', 'ERP mistakes', 'ERP failure', 'ERP success', 'ERP project'],
     author: {
-      name: 'Roberto Sánchez',
-      position: 'Implementation Director'
+      name: 'José Rojas',
+      position: 'GDS Guatemala'
     },
     published_date: '2024-01-22',
     category: 'mejores-practicas',
@@ -134,8 +134,8 @@ export const blogPosts: BlogPost[] = [
     meta_description: 'How to calculate ERP ROI. Practical methodology, real examples, and template to justify investment.',
     keywords: ['ERP ROI', 'ERP investment return', 'justify ERP', 'ERP cost benefit', 'ERP business case'],
     author: {
-      name: 'Patricia González',
-      position: 'Financial Consultant'
+      name: 'José Rojas',
+      position: 'GDS Guatemala'
     },
     published_date: '2024-02-05',
     category: 'guias',
@@ -172,8 +172,8 @@ export const blogPosts: BlogPost[] = [
     meta_description: 'ERP vs Excel: signs you need to make the change. When Excel is no longer enough and how to migrate to ERP.',
     keywords: ['ERP vs Excel', 'migrate from Excel to ERP', 'when do I need ERP', 'Excel vs ERP', 'Excel limitations'],
     author: {
-      name: 'Carlos Méndez',
-      position: 'Senior ERP Consultant'
+      name: 'José Rojas',
+      position: 'GDS Guatemala'
     },
     published_date: '2024-02-12',
     category: 'comparativas',
@@ -215,8 +215,8 @@ export const blogPosts: BlogPost[] = [
     meta_description: 'ERP trends 2024: AI, Cloud, mobility, and more. How these technologies are transforming ERP systems.',
     keywords: ['ERP trends 2024', 'AI in ERP', 'cloud ERP', 'mobile ERP', 'ERP future'],
     author: {
-      name: 'Roberto Sánchez',
-      position: 'Product Director'
+      name: 'José Rojas',
+      position: 'GDS Guatemala'
     },
     published_date: '2024-02-20',
     category: 'tendencias',

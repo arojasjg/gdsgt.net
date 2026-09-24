@@ -1,5 +1,5 @@
 /**
- * Case Study: Constructora Edificar
+ * Case Study: Piedritecu
  * Industry: Construction
  * Country: Costa Rica
  * Results: 40% reduction in cost overruns, 88% cost estimation accuracy
@@ -17,12 +17,11 @@ export const constructoraEdificar = {
     revenue: '$6M USD/año',
     founded: '2009',
     location: 'San José, Costa Rica',
-    website: 'www.edificar.co.cr',
     logo: '🏗️'
   },
   challenge: {
     title: 'El Desafío',
-    description: 'Edificar tenía sobrecostos frecuentes en proyectos que destruían su rentabilidad.',
+    description: 'Piedritecu tenía sobrecostos frecuentes en proyectos que destruían su rentabilidad.',
     problems: [
       {
         icon: '💸',
@@ -58,7 +57,7 @@ export const constructoraEdificar = {
     description: 'Implementamos GDS ONE con enfoque en control de costos por proyecto.',
     implementation: {
       duration: '55 días',
-      team: '3 personas (GDS ONE) + 5 personas (Edificar)',
+      team: '3 personas (GDS ONE) + 5 personas (Piedritecu)',
       modules: ['Proyectos', 'Costos por Proyecto', 'Subcontratistas', 'IA Predictiva', 'Reportes'],
       timeline: [
         {
@@ -120,7 +119,7 @@ export const constructoraEdificar = {
   },
   results: {
     title: 'Los Resultados',
-    description: 'Después de 6 meses, Edificar transformó su rentabilidad de proyectos.',
+    description: 'Después de 6 meses, Piedritecu transformó su rentabilidad de proyectos.',
     metrics: [
       {
         metric: '40%',
@@ -263,7 +262,7 @@ export const constructoraEdificar = {
     link: '/es/demo?industry=construction'
   },
   seo: {
-    meta_description: 'Caso de éxito: Constructora Edificar redujo sobrecostos 40% y aumentó rentabilidad 20% con GDS ONE IA. ROI 757%. Ahorro: $120,000/año.',
+    meta_description: 'Caso de éxito: Piedritecu redujo sobrecostos 40% y aumentó rentabilidad 20% con GDS ONE IA. ROI 757%. Ahorro: $120,000/año.',
     keywords: ['caso éxito construcción', 'ERP construcción', 'control costos proyectos', 'IA construcción', 'Costa Rica'],
     og_image: '/case-studies/og-constructora-edificar.jpg'
   },
@@ -271,5 +270,5 @@ export const constructoraEdificar = {
   updated_date: '2026-01-09',
   featured: true,
   category: 'construction',
-  tags: ['Construcción', 'Proyectos', 'IA', 'Costa Rica', 'Control de Costos']
+  tags: ['Construcción', 'Proyectos', 'IA', 'Guatemala', 'Control de Costos']
 };

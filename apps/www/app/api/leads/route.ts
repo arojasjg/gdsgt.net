@@ -2,13 +2,18 @@
  * Lead intake endpoint: POST /api/leads
  *
  * Delivers form submissions to every configured channel:
- *   LEADS_WEBHOOK_URL   JSON POST (Google Apps Script → Sheets, Make, Zapier, n8n, CRM)
- *   RESEND_API_KEY      email via Resend, with LEADS_EMAIL_TO (comma-separated)
- *                       and optional LEADS_EMAIL_FROM
+ *   Email (LEADS_EMAIL_TO, default info@gdsgt.net) via
+ *     SMTP_HOST / SMTP_PORT / SMTP_USER / SMTP_PASS (e.g. the Plesk mail server), or
+ *     RESEND_API_KEY
+ *   GDSONE_LEADS_URL (+ GDSONE_API_KEY)  GDS ONE ERP/CRM lead endpoint
+ *   LEADS_WEBHOOK_URL                    generic JSON POST (Sheets, Make, Zapier, n8n)
  * Returns 503 when no channel is configured so the client can fall back to WhatsApp.
  */
 
 import { NextResponse } from 'next/server';
+import nodemailer from 'nodemailer';
+
+export const runtime = 'nodejs';
 
 const SOURCES = ['custom_software', 'partner_application', 'contact'] as const;
 type Source = (typeof SOURCES)[number];
@@ -61,20 +66,74 @@ async function sendWebhook(url: string, lead: object): Promise<boolean> {
   return res.ok;
 }
 
-async function sendEmail(apiKey: string, to: string[], source: Source, fields: Record<string, string>, meta: Record<string, string>) {
+function buildEmail(source: Source, fields: Record<string, string>, meta: Record<string, string>) {
   const rows = Object.entries({ ...fields, ...meta })
     .map(([k, v]) => `<tr><td style="padding:4px 12px 4px 0;color:#555"><b>${escapeHtml(k)}</b></td><td style="padding:4px 0">${escapeHtml(v).replace(/\n/g, '<br>')}</td></tr>`)
     .join('');
+  const text = Object.entries({ ...fields, ...meta }).map(([k, v]) => `${k}: ${v}`).join('\n');
   const name = fields.name || fields.contact_name || fields.company || fields.company_name || '';
+  return {
+    subject: `Nuevo lead: ${SOURCE_LABELS[source]}${name ? ` – ${name}` : ''}`,
+    html: `<h2>${escapeHtml(SOURCE_LABELS[source])}</h2><table>${rows}</table>`,
+    text,
+    replyTo: fields.email || undefined,
+  };
+}
+
+async function sendSmtp(to: string[], email: ReturnType<typeof buildEmail>): Promise<boolean> {
+  const port = Number(process.env.SMTP_PORT || 465);
+  const transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port,
+    secure: port === 465,
+    auth: process.env.SMTP_USER ? { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS } : undefined,
+  });
+  await transporter.sendMail({
+    from: process.env.LEADS_EMAIL_FROM || process.env.SMTP_USER,
+    to,
+    replyTo: email.replyTo,
+    subject: email.subject,
+    html: email.html,
+    text: email.text,
+  });
+  return true;
+}
+
+async function sendResend(apiKey: string, to: string[], email: ReturnType<typeof buildEmail>): Promise<boolean> {
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
     body: JSON.stringify({
       from: process.env.LEADS_EMAIL_FROM || 'GDS Web <onboarding@resend.dev>',
       to,
-      reply_to: fields.email || undefined,
-      subject: `Nuevo lead: ${SOURCE_LABELS[source]}${name ? ` – ${name}` : ''}`,
-      html: `<h2>${escapeHtml(SOURCE_LABELS[source])}</h2><table>${rows}</table>`,
+      reply_to: email.replyTo,
+      subject: email.subject,
+      html: email.html,
+      text: email.text,
+    }),
+  });
+  return res.ok;
+}
+
+/** Normalized lead for GDS ONE: common fields on top, full form under `fields`. */
+async function sendGdsOne(url: string, source: Source, fields: Record<string, string>, meta: Record<string, string>): Promise<boolean> {
+  const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+  if (process.env.GDSONE_API_KEY) headers.Authorization = `Bearer ${process.env.GDSONE_API_KEY}`;
+  const res = await fetch(url, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({
+      origin: 'www.gdsgt.net',
+      source,
+      source_label: SOURCE_LABELS[source],
+      name: fields.name || fields.contact_name || '',
+      company: fields.company || fields.company_name || '',
+      email: fields.email || '',
+      phone: fields.phone || '',
+      country: fields.country || '',
+      message: fields.details || fields.why_partner || fields.message || '',
+      fields,
+      ...meta,
     }),
   });
   return res.ok;
@@ -111,12 +170,24 @@ export async function POST(request: Request) {
   };
 
   const webhookUrl = process.env.LEADS_WEBHOOK_URL;
+  const gdsOneUrl = process.env.GDSONE_LEADS_URL;
   const resendKey = process.env.RESEND_API_KEY;
-  const emailTo = (process.env.LEADS_EMAIL_TO || '').split(',').map((s) => s.trim()).filter(Boolean);
+  const emailTo = (process.env.LEADS_EMAIL_TO || 'info@gdsgt.net').split(',').map((s) => s.trim()).filter(Boolean);
+  const email = buildEmail(source, fields, meta);
 
   const deliveries: Promise<boolean>[] = [];
-  if (webhookUrl) deliveries.push(sendWebhook(webhookUrl, { source, ...meta, ...fields }).catch(() => false));
-  if (resendKey && emailTo.length) deliveries.push(sendEmail(resendKey, emailTo, source, fields, meta).catch(() => false));
+  const attempt = (channel: string, send: () => Promise<boolean>) =>
+    deliveries.push(
+      send().catch((err) => {
+        console.error(`[leads] ${channel} delivery failed`, err instanceof Error ? err.message : err);
+        return false;
+      })
+    );
+
+  if (process.env.SMTP_HOST) attempt('smtp', () => sendSmtp(emailTo, email));
+  else if (resendKey) attempt('resend', () => sendResend(resendKey, emailTo, email));
+  if (gdsOneUrl) attempt('gdsone', () => sendGdsOne(gdsOneUrl, source, fields, meta));
+  if (webhookUrl) attempt('webhook', () => sendWebhook(webhookUrl, { source, ...meta, ...fields }));
 
   if (deliveries.length === 0) {
     return NextResponse.json({ ok: false, error: 'not_configured' }, { status: 503 });

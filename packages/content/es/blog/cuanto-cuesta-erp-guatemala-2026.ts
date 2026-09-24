@@ -9,8 +9,8 @@ export const cuantoCuestaErp2026 = {
   title: '¿Cuánto Cuesta Realmente Implementar un ERP en Guatemala? Guía Completa 2026',
   excerpt: 'Guía transparente sobre costos reales de ERP en Guatemala: licencias, implementación, capacitación, soporte y costos ocultos. Incluye comparación de precios y calculadora TCO.',
   author: {
-    name: 'Lic. Patricia Hernández',
-    position: 'CFO & Pricing Strategist',
+    name: 'José Rojas',
+    position: 'GDS Guatemala',
     avatar: '💰'
   },
   published_date: '2026-01-12',

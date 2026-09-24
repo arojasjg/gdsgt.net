@@ -9,8 +9,8 @@ export const queEsUnErp2026 = {
   title: '¿Qué es un ERP y Por Qué Tu Empresa lo Necesita en 2026?',
   excerpt: 'Descubre qué es un sistema ERP, cómo funciona y por qué es esencial para empresas modernas en Latinoamérica. Guía completa con ejemplos reales y casos de éxito.',
   author: {
-    name: 'Equipo GDS ONE',
-    position: 'Expertos en ERP',
+    name: 'José Rojas',
+    position: 'GDS Guatemala',
     avatar: '👥'
   },
   published_date: '2026-01-06',

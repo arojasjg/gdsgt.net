@@ -93,6 +93,7 @@ export const customSoftwareEs: CustomSoftwareContent = {
     primaryCta: 'Agendar diagnóstico gratis',
     secondaryCta: 'Cotizar por WhatsApp',
     trust: [
+      '+100 empresas confían en GDS',
       'Equipo en Guatemala',
       'Primera versión en semanas, no meses',
       'Hosting, soporte y mejoras incluidos',

@@ -11,8 +11,9 @@ Marca ✅ al completar cada uno. **Usa siempre exactamente los mismos datos (NAP
 - **Email:** info@grupogds.co
 - **Web:** https://www.gdsgt.net
 - **Fundación:** 2009
+- **Clientes:** más de 100 empresas
 - **Descripción corta (160 caracteres):** Empresa guatemalteca de software: GDS ONE ERP, CRM, BI, IA y desarrollo de software y apps a la medida desde Q2,500/mes.
-- **Descripción larga:** GDS es una empresa guatemalteca de software empresarial fundada en 2009. Desarrolla GDS ONE ERP y ofrece Business Intelligence, CRM, inteligencia artificial y desarrollo de software y apps a la medida por suscripción desde Q2,500 al mes, con hosting, soporte y mejoras incluidas. Integra facturación electrónica FEL, pasarelas de pago y WhatsApp. Atiende empresas en Guatemala, Centroamérica y Latinoamérica.
+- **Descripción larga:** GDS es una empresa guatemalteca de software empresarial fundada en 2009, con más de 100 empresas clientes. Desarrolla GDS ONE ERP y ofrece Business Intelligence, CRM, inteligencia artificial y desarrollo de software y apps a la medida por suscripción desde Q2,500 al mes, con hosting, soporte y mejoras incluidas. Integra facturación electrónica FEL, pasarelas de pago y WhatsApp. Atiende empresas en Guatemala, Centroamérica y Latinoamérica.
 - **Servicios:** Desarrollo de software a la medida · Desarrollo de apps móviles · ERP · CRM · Business Intelligence · Integración FEL · Inteligencia artificial · Data Engineering
 
 > ⚠️ **Antes de empezar, unifica el correo.** El sitio usa `info@grupogds.co` y el README `soporte@gdsgt.net`. Idealmente usa un correo del mismo dominio del sitio (ej. `info@gdsgt.net`). Si cambias algo, cámbialo también en `apps/www/lib/site.ts` y en el Footer.

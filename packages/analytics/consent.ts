@@ -34,9 +34,13 @@ export function setConsentState(state: ConsentState): void {
   }
 }
 
+/**
+ * Tracking is on unless the visitor explicitly opted out (there is no consent
+ * banner on the site; Guatemala does not require opt-in consent).
+ */
 export function hasConsent(): boolean {
   const state = getConsentState();
-  return state?.analytics === 'granted';
+  return state?.analytics !== 'denied';
 }
 
 export function initConsent(): void {

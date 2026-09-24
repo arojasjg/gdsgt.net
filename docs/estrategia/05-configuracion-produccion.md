@@ -61,23 +61,42 @@ SMTP_PASS=la-contraseña-del-buzón
 
 Alternativa sin servidor de correo: `RESEND_API_KEY` (resend.com).
 
-### GDS ONE ERP
+### GDS ONE ERP → módulo CRM
 
-El sitio envía un `POST` JSON a `GDSONE_LEADS_URL`, con `Authorization: Bearer <GDSONE_API_KEY>` si la defines:
+El ERP (`arojasjg/erp`, rama `claude/trusting-hopper-9t2cho`) tiene un endpoint nuevo: `Web_leadController`. Por cada formulario:
+1. Busca un **prospecto** con el mismo correo o celular; si no existe, lo crea (NIT `CF`, contacto, correo, celular y observaciones).
+2. Abre un **proyecto CRM** (oportunidad) ligado a ese prospecto, con código `WEB-…`, fecha, origen y mensaje.
 
-```json
-{
-  "origin": "www.gdsgt.net",
-  "source": "custom_software",
-  "source_label": "Software a la medida",
-  "name": "Ana López", "company": "Acme", "email": "", "phone": "5555-5555",
-  "country": "", "message": "App de pedidos para vendedores",
-  "fields": { "...todos los campos del formulario..." },
-  "lang": "es", "page": "/es/software-a-la-medida", "received_at": "2026-09-24T15:48:24Z"
-}
+Todo ocurre en una transacción; si algo falla, no queda nada a medias.
+
+**En el servidor del ERP** (variables de entorno del PHP / Plesk, o en `params` de la configuración de Yii):
+
+```
+WEB_LEADS_TOKEN=<secreto largo; genera uno con: openssl rand -hex 32>
+WEB_LEADS_CORPORACION=<ID de la corporación GDS>
+WEB_LEADS_EMPRESA=<ID de la empresa GDS>
+WEB_LEADS_VENDEDOR=<opcional: ID del vendedor que recibe los leads>
+WEB_LEADS_ESTADO_CRM=<opcional: ID del estado "Nuevo" en Estado de proyecto CRM>
+WEB_LEADS_USUARIO=<opcional: ID del usuario creador>
 ```
 
-`source` puede ser `custom_software`, `partner_application` o `contact`. Si el ERP espera otro formato o autenticación, pásame la documentación de su API y ajusto el envío.
+**En el servidor del sitio web** (`apps/www/.env.local`):
+
+```
+GDSONE_LEADS_URL=https://<dominio-del-erp>/index.php?r=web_lead/recibir
+GDSONE_API_KEY=<el mismo WEB_LEADS_TOKEN>
+```
+
+Prueba rápida desde el servidor:
+
+```bash
+curl -X POST "https://<dominio-del-erp>/index.php?r=web_lead/recibir" \
+  -H "Authorization: Bearer <token>" -H "Content-Type: application/json" \
+  -d '{"source_label":"Prueba","name":"Prueba Web","company":"Prueba S.A.","email":"prueba@example.com","phone":"+502 5555 5555","message":"Lead de prueba"}'
+# Respuesta esperada: {"status":"success","prospecto_id":123,"proyecto_crm_id":456}
+```
+
+Si Apache no pasa el encabezado `Authorization` a PHP, usa `X-Web-Leads-Token: <token>` (el endpoint acepta ambos) o agrega al `.htaccess`: `SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1`.
 
 ### Opcional: Google Sheets u otra herramienta (webhook)
 

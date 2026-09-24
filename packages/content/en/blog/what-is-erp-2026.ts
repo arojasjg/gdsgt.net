@@ -546,7 +546,7 @@ Not a generic demo. A demo with:
 ## 📞 Have Questions?
 
 **WhatsApp**: +502 5996-1882 (Response in minutes)  
-**Email**: info@grupogds.co  
+**Email**: info@gdsgt.net  
 **Phone**: +502 2354-5437
 
 Our team is ready to help you transform your business.

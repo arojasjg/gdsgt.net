@@ -961,7 +961,7 @@ Después de analizar **todos los costos** (licencias, implementación, capacitac
 ### 📞 ¿Necesitas una Cotización Personalizada?
 
 **WhatsApp**: +502 5996-1882 (Cotización en 10 minutos)  
-**Email**: info@grupogds.co  
+**Email**: info@gdsgt.net  
 **Teléfono**: +502 2354-5437
 
 Nuestro equipo te dará una cotización **transparente, sin costos ocultos, sin presión de venta**.

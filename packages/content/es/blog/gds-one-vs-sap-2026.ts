@@ -323,7 +323,7 @@ En esta comparación **honesta y detallada**, analizaremos GDS ONE vs SAP Busine
 
 **Canales**:
 - 💬 WhatsApp: +502 5996-1882 (respuesta en minutos)
-- 📧 Email: info@grupogds.co (respuesta <4 horas)
+- 📧 Email: info@gdsgt.net (respuesta <4 horas)
 - 📞 Teléfono: +502 2354-5437 (horario oficina)
 - 🤖 AI Assistant: 24/7 (respuestas instantáneas)
 
@@ -926,7 +926,7 @@ No tomes nuestra palabra. **Compruébalo tú mismo**:
 ### 📞 ¿Tienes Dudas?
 
 **WhatsApp**: +502 5996-1882 (Experto en migraciones SAP → GDS ONE)  
-**Email**: info@grupogds.co  
+**Email**: info@gdsgt.net  
 **Teléfono**: +502 2354-5437
 
 Nuestro equipo incluye **ex-consultores de SAP** que conocen ambos sistemas a profundidad.

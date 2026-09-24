@@ -118,7 +118,11 @@ async function sendResend(apiKey: string, to: string[], email: ReturnType<typeof
 /** Normalized lead for GDS ONE: common fields on top, full form under `fields`. */
 async function sendGdsOne(url: string, source: Source, fields: Record<string, string>, meta: Record<string, string>): Promise<boolean> {
   const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-  if (process.env.GDSONE_API_KEY) headers.Authorization = `Bearer ${process.env.GDSONE_API_KEY}`;
+  if (process.env.GDSONE_API_KEY) {
+    headers.Authorization = `Bearer ${process.env.GDSONE_API_KEY}`;
+    // Some Apache/PHP setups drop Authorization; the ERP also accepts this header
+    headers['X-Web-Leads-Token'] = process.env.GDSONE_API_KEY;
+  }
   const res = await fetch(url, {
     method: 'POST',
     headers,

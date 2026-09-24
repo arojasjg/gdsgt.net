@@ -221,7 +221,7 @@ export default async function TermsPage({ params }: { params: Promise<{ lang: st
           content: [
             'Para preguntas sobre estos términos, contáctanos:',
             '',
-            '📧 Email: info@grupogds.co',
+            '📧 Email: info@gdsgt.net',
             '📞 Teléfono: +502 2354-5437',
             '💬 WhatsApp: +502 5996-1882',
             '',
@@ -436,7 +436,7 @@ export default async function TermsPage({ params }: { params: Promise<{ lang: st
           content: [
             'For questions about these terms, contact us:',
             '',
-            '📧 Email: info@grupogds.co',
+            '📧 Email: info@gdsgt.net',
             '📞 Phone: +502 2354-5437',
             '💬 WhatsApp: +502 5996-1882',
             '',

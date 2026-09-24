@@ -115,7 +115,7 @@ export default async function PrivacyPage({ params }: { params: Promise<{ lang: 
             '• Solicitar la portabilidad de tus datos',
             '• Retirar tu consentimiento en cualquier momento',
             '',
-            'Para ejercer estos derechos, contáctanos en: info@grupogds.co',
+            'Para ejercer estos derechos, contáctanos en: info@gdsgt.net',
           ]
         },
         {
@@ -167,7 +167,7 @@ export default async function PrivacyPage({ params }: { params: Promise<{ lang: 
           content: [
             'Si tienes preguntas sobre esta política de privacidad, contáctanos:',
             '',
-            '📧 Email: info@grupogds.co',
+            '📧 Email: info@gdsgt.net',
             '📞 Teléfono: +502 2354-5437',
             '💬 WhatsApp: +502 5996-1882',
             '',
@@ -272,7 +272,7 @@ export default async function PrivacyPage({ params }: { params: Promise<{ lang: 
             '• Request data portability',
             '• Withdraw your consent at any time',
             '',
-            'To exercise these rights, contact us at: info@grupogds.co',
+            'To exercise these rights, contact us at: info@gdsgt.net',
           ]
         },
         {
@@ -324,7 +324,7 @@ export default async function PrivacyPage({ params }: { params: Promise<{ lang: 
           content: [
             'If you have questions about this privacy policy, contact us:',
             '',
-            '📧 Email: info@grupogds.co',
+            '📧 Email: info@gdsgt.net',
             '📞 Phone: +502 2354-5437',
             '💬 WhatsApp: +502 5996-1882',
             '',

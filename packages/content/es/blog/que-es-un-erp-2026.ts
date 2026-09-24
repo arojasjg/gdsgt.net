@@ -546,7 +546,7 @@ No una demo genérica. Una demo con:
 ## 📞 ¿Tienes Preguntas?
 
 **WhatsApp**: +502 5996-1882 (Respuesta en minutos)  
-**Email**: info@grupogds.co  
+**Email**: info@gdsgt.net  
 **Teléfono**: +502 2354-5437
 
 Nuestro equipo está listo para ayudarte a transformar tu empresa.

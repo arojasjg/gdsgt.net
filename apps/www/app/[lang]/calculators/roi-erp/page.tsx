@@ -6,15 +6,16 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, use } from 'react';
 import Link from 'next/link';
 import { HeroSection, CTASection } from '@gds/ui/layouts';
 import { Button, Card, Input, Select } from '@gds/ui';
 import { track } from '@gds/analytics';
 import { calculateROI, formatCurrency, formatPercentage, type ROIInputs, type ROIResults } from '@gds/calculators';
 
-export default function ROICalculatorPage({ params }: { params: { lang: string } }) {
-  const isSpanish = params.lang === 'es';
+export default function ROICalculatorPage({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = use(params);
+  const isSpanish = lang === 'es';
   const [results, setResults] = useState<ROIResults | null>(null);
   const [inputs, setInputs] = useState<ROIInputs>({
     current_annual_revenue: 0,
@@ -163,7 +164,7 @@ export default function ROICalculatorPage({ params }: { params: { lang: string }
       employees: inputs.employees,
       roi_year_1: calculatedResults.roi.year_1_roi_percentage,
       payback_months: calculatedResults.roi.payback_months,
-      lang: params.lang
+      lang: lang
     });
   };
   
@@ -338,7 +339,7 @@ export default function ROICalculatorPage({ params }: { params: { lang: string }
         title={t.cta.title}
         description={t.cta.description}
         cta={
-          <Link href={`/${params.lang}/case-studies`}>
+          <Link href={`/${lang}/case-studies`}>
             <Button size="lg" variant="primary">
               {t.cta.button}
             </Button>

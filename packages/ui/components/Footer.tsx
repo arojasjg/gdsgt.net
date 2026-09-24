@@ -203,6 +203,11 @@ export const Footer: React.FC<FooterProps> = ({ lang = 'es' }) => {
                 </a>
               </li>
               <li>
+                <a href={`${urls.www}/software-a-la-medida`} className="hover:text-white transition-colors">
+                  {isSpanish ? 'Software y apps a la medida' : 'Custom software & apps'}
+                </a>
+              </li>
+              <li>
                 <a href={`${urls.erp}/pricing`} className="hover:text-white transition-colors">
                   {isSpanish ? 'Precios' : 'Pricing'}
                 </a>

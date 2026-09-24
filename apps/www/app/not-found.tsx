@@ -39,7 +39,7 @@ export default function NotFound() {
               </div>
             </Link>
 
-            <a href="http://localhost:9001/es">
+            <a href="https://erp.grupogds.co/es">
               <div className="p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-all cursor-pointer">
                 <div className="text-3xl mb-2">💼</div>
                 <div className="font-semibold text-gray-900">GDS ONE ERP</div>
@@ -72,7 +72,7 @@ export default function NotFound() {
               Volver al Inicio
             </Button>
           </Link>
-          <a href="http://localhost:9001/es/contact">
+          <a href="https://erp.grupogds.co/es/contact">
             <Button variant="outline" size="lg" className="w-full sm:w-auto">
               Contactar Soporte
             </Button>
@@ -82,7 +82,7 @@ export default function NotFound() {
         {/* Help Text */}
         <p className="text-sm text-gray-500 mt-8">
           Si crees que esto es un error, por favor{' '}
-          <a href="http://localhost:9001/es/contact" className="text-blue-600 hover:underline">
+          <a href="https://erp.grupogds.co/es/contact" className="text-blue-600 hover:underline">
             contáctanos
           </a>
         </p>

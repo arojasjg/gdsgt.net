@@ -1,0 +1,38 @@
+# GDS - Grupo de Soluciones (Guatemala)
+
+> GDS is a Guatemalan business software company (founded 2009, headquartered in Guatemala City) that builds GDS ONE ERP and offers Business Intelligence, CRM, AI, Data Engineering and custom software and mobile app development as a monthly subscription starting at Q2,500 per month (GTQ, VAT not included). It serves small and mid-size companies in Guatemala, Central America and Latin America, in Spanish and English.
+
+Key facts:
+- Legal/brand names: GDS, Grupo GDS, GDS - Grupo de Soluciones, GDS ONE (ERP product)
+- Address: K.M. 15.5 Carretera a El Salvador, Plaza Condado Concepción, 5to. nivel, oficinas 5F-1 y 5F-2, Guatemala
+- Phone: +502 2354-5437 · WhatsApp: +502 5996 1882 · Email: info@grupogds.co
+- Websites: https://www.gdsgt.net (corporate and services), https://erp.grupogds.co (GDS ONE ERP)
+
+## Custom software and app development (Desarrollo de software a la medida)
+
+- [Desarrollo de software y apps a la medida desde Q2,500/mes](https://www.gdsgt.net/es/software-a-la-medida): Spanish landing page with plans, process and FAQ
+- [Custom software and app development from Q2,500/month](https://www.gdsgt.net/en/software-a-la-medida): English version
+
+Plans (monthly subscription, 12-month minimum, initial development included per agreed scope):
+- Essential / Esencial: from Q2,500/month. One custom web system or PWA, up to 10 hours/month of improvements, up to 10 users, cloud hosting, SSL, daily backups, WhatsApp/email support.
+- Professional / Profesional: from Q5,900/month. Web system + Android/iOS app, up to 25 hours/month, up to 50 users, integrations (FEL e-invoicing from SAT Guatemala, payment gateways, WhatsApp Business API, ERP), dashboards, priority support.
+- Enterprise / Empresarial: custom quote. Dedicated developer or squad, QA, DevOps, SLA, project manager.
+
+Typical projects: inventory and order systems, route sales apps, work-order and field-service apps, clinic appointment systems, customer portals, e-commerce, dashboards, AI chatbots, and integrations with FEL (SAT), banks and payment gateways.
+
+## Products
+
+- [GDS ONE ERP](https://erp.grupogds.co/es): modular cloud ERP for SMEs in Latin America (accounting, inventory, sales, purchasing, FEL e-invoicing, BI, AI assistant)
+- [ERP demo request](https://erp.grupogds.co/es/demo)
+
+## Resources
+
+- [Blog](https://www.gdsgt.net/es/blog): ERP, digital transformation and technology guides for Latin American companies
+- [Case studies](https://www.gdsgt.net/es/case-studies)
+- [ROI calculator](https://www.gdsgt.net/es/calculators/roi-erp)
+- [TCO calculator ERP vs Excel](https://www.gdsgt.net/es/calculators/tco-erp-vs-excel)
+
+## Contact
+
+- [WhatsApp](https://wa.me/50259961882)
+- [Partner program](https://www.gdsgt.net/es/partners)

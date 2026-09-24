@@ -6,14 +6,15 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, use } from 'react';
 import Link from 'next/link';
 import { HeroSection } from '@gds/ui/layouts';
 import { Button, Input, Select, Card, Alert } from '@gds/ui';
 import { track } from '@gds/analytics';
 
-export default function PartnerApplyPage({ params }: { params: { lang: string } }) {
-  const isSpanish = params.lang === 'es';
+export default function PartnerApplyPage({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = use(params);
+  const isSpanish = lang === 'es';
   
   const [formData, setFormData] = useState({
     company_name: '',
@@ -46,7 +47,7 @@ export default function PartnerApplyPage({ params }: { params: { lang: string } 
         partner_type: formData.partner_type,
         company_size: formData.company_size,
         country: formData.country,
-        lang: params.lang
+        lang: lang
       });
       
       // TODO: Send to API
@@ -159,7 +160,7 @@ export default function PartnerApplyPage({ params }: { params: { lang: string } 
           title={t.success.title}
           description={t.success.message}
           cta={
-            <Link href={`/${params.lang}/partners`}>
+            <Link href={`/${lang}/partners`}>
               <Button variant="primary" size="lg">
                 {t.success.cta}
               </Button>

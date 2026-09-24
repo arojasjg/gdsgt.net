@@ -28,6 +28,11 @@ export { clientLogosEn } from './en/clients';
 export { aiFeatures as aiFeatures_es, aiUseCases as aiUseCases_es, aiStats as aiStats_es, aiCompetitors as aiCompetitors_es, aiFAQ as aiFAQ_es } from './es/ia';
 export { aiFeatures as aiFeatures_en, aiUseCases as aiUseCases_en, aiStats as aiStats_en, aiCompetitors as aiCompetitors_en, aiFAQ as aiFAQ_en } from './en/ia';
 
+// Custom software development service
+export { customSoftwareEs } from './es/custom-software';
+export { customSoftwareEn } from './en/custom-software';
+export type { CustomSoftwareContent, CustomSoftwarePlan } from './es/custom-software';
+
 // English content (import when created)
 // export { modules as modulesEn } from './en/erp/modules';
 // export { integrations as integrationsEn } from './en/erp/integrations';

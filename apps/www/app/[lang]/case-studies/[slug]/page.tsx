@@ -11,7 +11,6 @@ import { HeroSection, CTASection } from '@gds/ui/layouts';
 import { Card, Badge, Accordion, AccordionItem } from '@gds/ui';
 import { generateMetadata as generateSEOMetadata, generateArticleSchema, generateOrganizationSchema, generateBreadcrumbSchema } from '@gds/seo';
 import { getCaseStudyBySlug, getAllCaseStudies } from '@gds/content';
-import { track } from '@gds/analytics';
 
 export async function generateStaticParams() {
   const caseStudies = getAllCaseStudies();
@@ -25,15 +24,16 @@ export async function generateStaticParams() {
   );
 }
 
-export async function generateMetadata({ params }: { params: { lang: string; slug: string } }): Promise<Metadata> {
-  const caseStudy = getCaseStudyBySlug(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ lang: string; slug: string }> }): Promise<Metadata> {
+  const { lang, slug } = await params;
+  const caseStudy = getCaseStudyBySlug(slug);
   
   if (!caseStudy) {
     return {};
   }
   
-  const isSpanish = params.lang === 'es';
-  const resultsText = caseStudy.results.metrics.map(m => `${m.value} ${m.label}`).join(', ');
+  const isSpanish = lang === 'es';
+  const resultsText = caseStudy.results.metrics.slice(0, 3).map(m => `${m.improvement} ${m.metric}`).join(', ');
   
   return generateSEOMetadata(
     {
@@ -64,30 +64,31 @@ export async function generateMetadata({ params }: { params: { lang: string; slu
       locales: ['es', 'en'],
       defaultLocale: 'es'
     },
-    params.lang as 'es' | 'en',
-    `/case-studies/${params.slug}`
+    lang as 'es' | 'en',
+    `/case-studies/${slug}`
   );
 }
 
-export default function CaseStudyDetailPage({ params }: { params: { lang: string; slug: string } }) {
-  const caseStudy = getCaseStudyBySlug(params.slug);
+export default async function CaseStudyDetailPage({ params }: { params: Promise<{ lang: string; slug: string }> }) {
+  const { lang, slug } = await params;
+  const caseStudy = getCaseStudyBySlug(slug);
   
   if (!caseStudy) {
     notFound();
   }
   
-  const isSpanish = params.lang === 'es';
+  const isSpanish = lang === 'es';
 
   // URLs for schema
-  const homeUrl = process.env.NODE_ENV === 'development' ? `http://localhost:9000/${params.lang}` : `https://www.gdsgt.net/${params.lang}`;
-  const caseStudiesUrl = process.env.NODE_ENV === 'development' ? `http://localhost:9000/${params.lang}/case-studies` : `https://www.gdsgt.net/${params.lang}/case-studies`;
-  const currentUrl = process.env.NODE_ENV === 'development' ? `http://localhost:9000/${params.lang}/case-studies/${params.slug}` : `https://www.gdsgt.net/${params.lang}/case-studies/${params.slug}`;
+  const homeUrl = process.env.NODE_ENV === 'development' ? `http://localhost:9000/${lang}` : `https://www.gdsgt.net/${lang}`;
+  const caseStudiesUrl = process.env.NODE_ENV === 'development' ? `http://localhost:9000/${lang}/case-studies` : `https://www.gdsgt.net/${lang}/case-studies`;
+  const currentUrl = process.env.NODE_ENV === 'development' ? `http://localhost:9000/${lang}/case-studies/${slug}` : `https://www.gdsgt.net/${lang}/case-studies/${slug}`;
 
   // Schema.org structured data
   const articleSchema = generateArticleSchema({
     headline: caseStudy.title,
     description: caseStudy.subtitle,
-    image: `https://www.gdsgt.net/case-studies/${params.slug}.jpg`,
+    image: `https://www.gdsgt.net/og-default.png`,
     datePublished: new Date().toISOString(), // Use actual date if available
     dateModified: new Date().toISOString(),
     author: {
@@ -241,10 +242,12 @@ export default function CaseStudyDetailPage({ params }: { params: { lang: string
               ))}
             </ul>
             
-            <div className="mt-6 pt-6 border-t border-red-200">
-              <div className="text-sm text-gray-600 mb-1">{t.previous_system}</div>
-              <div className="font-semibold text-red-900">{caseStudy.challenge.previous_system}</div>
-            </div>
+            {caseStudy.challenge.previous_system && (
+              <div className="mt-6 pt-6 border-t border-red-200">
+                <div className="text-sm text-gray-600 mb-1">{t.previous_system}</div>
+                <div className="font-semibold text-red-900">{caseStudy.challenge.previous_system}</div>
+              </div>
+            )}
           </Card>
         </div>
       </section>
@@ -300,11 +303,11 @@ export default function CaseStudyDetailPage({ params }: { params: { lang: string
                     <div className="font-bold text-gray-900">{metric.metric}</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-sm text-gray-500 mb-1">Antes</div>
+                    <div className="text-sm text-gray-500 mb-1">{isSpanish ? 'Detalle' : 'Detail'}</div>
                     <div className="font-semibold text-red-600">{metric.before}</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-sm text-gray-500 mb-1">Después</div>
+                    <div className="text-sm text-gray-500 mb-1">{isSpanish ? 'Impacto' : 'Impact'}</div>
                     <div className="font-semibold text-blue-600">{metric.after}</div>
                   </div>
                   <div className="text-center">
@@ -395,7 +398,7 @@ export default function CaseStudyDetailPage({ params }: { params: { lang: string
                 <Card variant="hover">
                   <h3 className="text-lg font-bold mb-3">🏭 {t.view_industry}</h3>
                   <Link 
-                    href={`/${params.lang}/industries/${caseStudy.related_industry}`}
+                    href={`https://erp.grupogds.co/${lang}/industries/${caseStudy.related_industry}`}
                     className="text-blue-600 font-semibold hover:underline"
                   >
                     Ver más sobre {caseStudy.company.industry} →
@@ -410,7 +413,7 @@ export default function CaseStudyDetailPage({ params }: { params: { lang: string
                     {caseStudy.related_capabilities.map((cap, idx) => (
                       <Link 
                         key={idx}
-                        href={`/${params.lang}/capabilities/${cap}`}
+                        href={`https://erp.grupogds.co/${lang}/capabilities/${cap}`}
                         className="block text-blue-600 font-semibold hover:underline"
                       >
                         {cap} →
@@ -429,11 +432,8 @@ export default function CaseStudyDetailPage({ params }: { params: { lang: string
         title={`${t.cta_prefix} ${caseStudy.cta.title}`}
         description={caseStudy.cta.description}
         cta={
-          <Link href={`/${params.lang}/demo`}>
-            <button 
-              className="px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
-              onClick={() => track('case_study_cta_click', { case_study: caseStudy.slug })}
-            >
+          <Link href={`https://erp.grupogds.co/${lang}/demo`}>
+            <button className="px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors">
               {caseStudy.cta.button}
             </button>
           </Link>

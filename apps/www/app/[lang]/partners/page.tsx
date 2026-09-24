@@ -10,12 +10,13 @@ import { HeroSection } from '@gds/ui/layouts';
 import { Button, Card, Badge } from '@gds/ui';
 import { generateMetadata as generateSEOMetadata } from '@gds/seo';
 
-export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const { lang } = await params;
   return generateSEOMetadata({
-    title: params.lang === 'es' 
+    title: lang === 'es' 
       ? 'Programa de Partners GDS | Crece con Nosotros'
       : 'GDS Partner Program | Grow with Us',
-    description: params.lang === 'es'
+    description: lang === 'es'
       ? 'Únete al programa de partners de GDS. Comisiones competitivas, materiales de co-marketing, capacitación técnica y soporte dedicado.'
       : 'Join the GDS partner program. Competitive commissions, co-marketing materials, technical training, and dedicated support.'
   }, {
@@ -24,11 +25,12 @@ export async function generateMetadata({ params }: { params: { lang: string } })
     description: 'GDS - Sistema ERP, BI, CRM, AI, Data, Integrations, Security',
     locales: ['es', 'en'],
     defaultLocale: 'es'
-  }, params.lang as 'es' | 'en', `/partners`);
+  }, lang as 'es' | 'en', `/partners`);
 }
 
-export default function PartnersPage({ params }: { params: { lang: string } }) {
-  const isSpanish = params.lang === 'es';
+export default async function PartnersPage({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const isSpanish = lang === 'es';
   const logoUrl = 'https://gdsgt.net/uploads/7691933/400_filter_nobg_64155247def00.png';
   
   const content = {
@@ -267,7 +269,7 @@ export default function PartnersPage({ params }: { params: { lang: string } }) {
             <div className="text-8xl mb-4 animate-fade-in">
               🤝
             </div>
-            <Link href={`/${params.lang}/partners/apply`}>
+            <Link href={`/${lang}/partners/apply`}>
               <Button size="lg">
                 {t.hero.cta}
               </Button>
@@ -374,7 +376,7 @@ export default function PartnersPage({ params }: { params: { lang: string } }) {
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
             {t.cta.description}
           </p>
-          <Link href={`/${params.lang}/partners/apply`}>
+          <Link href={`/${lang}/partners/apply`}>
             <Button variant="secondary" size="lg">
               {t.cta.button}
             </Button>

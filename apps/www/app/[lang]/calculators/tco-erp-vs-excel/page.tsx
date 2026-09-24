@@ -6,15 +6,16 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, use } from 'react';
 import Link from 'next/link';
 import { HeroSection, CTASection } from '@gds/ui/layouts';
 import { TCOCalculator, Button, Card } from '@gds/ui';
 import { track } from '@gds/analytics';
 import { calculateTCO, formatCurrency, formatPercentage, type TCOInputs, type TCOResults } from '@gds/calculators';
 
-export default function TCOCalculatorPage({ params }: { params: { lang: string } }) {
-  const isSpanish = params.lang === 'es';
+export default function TCOCalculatorPage({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = use(params);
+  const isSpanish = lang === 'es';
   const [results, setResults] = useState<TCOResults | null>(null);
   
   const content = {
@@ -134,7 +135,7 @@ export default function TCOCalculatorPage({ params }: { params: { lang: string }
       transactions: inputs.monthly_transactions,
       breakeven_months: calculatedResults.breakeven_months,
       five_year_savings: calculatedResults.five_year_savings,
-      lang: params.lang
+      lang: lang
     });
   };
   
@@ -201,7 +202,7 @@ export default function TCOCalculatorPage({ params }: { params: { lang: string }
         title={t.cta.title}
         description={t.cta.description}
         cta={
-          <Link href={`/${params.lang}/demo`}>
+          <Link href={`https://erp.grupogds.co/${lang}/demo`}>
             <Button size="lg" variant="primary">
               {t.cta.button}
             </Button>

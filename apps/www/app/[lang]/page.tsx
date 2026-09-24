@@ -1,9 +1,9 @@
 import { HeroSection, FeatureGrid, CTASection, SocialProofBanner, PricingInline } from '@gds/ui';
 import { Button, Card } from '@gds/ui';
 import Link from 'next/link';
-import Image from 'next/image';
 import { Metadata } from 'next';
-import { generateMetadata as generateSEOMetadata, generateOrganizationSchema } from '@gds/seo';
+import { generateMetadata as generateSEOMetadata } from '@gds/seo';
+import { ERP_URL, CUSTOM_SOFTWARE_PATH, whatsappLink } from '@/lib/site';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -12,11 +12,11 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   return generateSEOMetadata(
     {
       title: isSpanish
-        ? 'GDS - Software ERP, BI, CRM e IA para Empresas | Soluciones Integrales'
-        : 'GDS - ERP, BI, CRM & AI Software for Businesses | Comprehensive Solutions',
+        ? 'GDS Guatemala | Software ERP, CRM, BI, IA y Desarrollo a la Medida'
+        : 'GDS Guatemala | ERP, CRM, BI, AI & Custom Software Development',
       description: isSpanish
-        ? 'Soluciones empresariales integrales: ERP modular, Business Intelligence, CRM, Data Engineering e IA. Alternativa moderna a SAP, Oracle NetSuite, Microsoft Dynamics, Odoo. Reduce costos hasta 70%, mejora eficiencia operativa y toma mejores decisiones con datos en tiempo real. +500 empresas en Latinoamérica. Solicita consultoría gratuita.'
-        : 'Comprehensive business solutions: Modular ERP, Business Intelligence, CRM, Data Engineering and AI. Modern alternative to SAP, Oracle NetSuite, Microsoft Dynamics, Odoo. Reduce costs up to 70%, improve operational efficiency and make better decisions with real-time data. +500 companies in Latin America. Request free consultation.',
+        ? 'Empresa de software en Guatemala: GDS ONE ERP, CRM, Business Intelligence, IA y desarrollo de software y apps a la medida desde Q2,500/mes. Consultoría gratis.'
+        : 'Software company in Guatemala: GDS ONE ERP, CRM, Business Intelligence, AI and custom software and app development from Q2,500/month. Free consultation.',
       keywords: isSpanish
         ? [
             'software empresarial',
@@ -36,6 +36,9 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
             'análisis de datos',
             'GDS',
             'Latinoamérica',
+            'desarrollo de software a la medida',
+            'empresa de software Guatemala',
+            'desarrollo de apps Guatemala',
           ]
         : [
             'business software',
@@ -55,6 +58,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
             'data analytics',
             'GDS',
             'Latin America',
+            'custom software development',
+            'software company Guatemala',
           ],
     },
     {
@@ -72,32 +77,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 export default async function HomePage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const isSpanish = lang === 'es';
-
-  // Schema.org structured data
-  const organizationSchema = generateOrganizationSchema({
-    name: 'GDS - Grupo de Soluciones',
-    description: isSpanish
-      ? 'Proveedor líder de software empresarial: ERP, BI, CRM, Data Engineering e IA para empresas en Latinoamérica'
-      : 'Leading provider of business software: ERP, BI, CRM, Data Engineering and AI for businesses in Latin America',
-    url: 'https://www.gdsgt.net',
-    logo: 'https://www.gdsgt.net/logo.png',
-    foundingDate: '2009',
-    contactPoint: {
-      telephone: '+502-2354-5437',
-      contactType: 'customer service',
-      areaServed: ['GT', 'MX', 'CO', 'SV', 'HN', 'NI', 'CR', 'PA'],
-      availableLanguage: ['es', 'en'],
-    },
-    sameAs: [
-      'https://www.linkedin.com/company/grupo-gds',
-      'https://www.facebook.com/grupogds',
-    ],
-    address: {
-      streetAddress: 'K.M. 15.5 CARR. A EL SALVADOR, PLAZA CONDADO CONCEPCIÓN, 5TO. NIVEL OF. 5F-1 Y 5F-2',
-      addressLocality: 'Guatemala',
-      addressCountry: 'GT',
-    },
-  });
 
   const benefits = [
     {
@@ -170,19 +149,13 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
       id: 'services',
       title: isSpanish ? 'Servicios' : 'Services',
       description: isSpanish
-        ? 'Implementación, integraciones, staff augmentation y soporte'
-        : 'Implementation, integrations, staff augmentation and support',
+        ? 'Software y apps a la medida desde Q2,500/mes, implementación, integraciones y soporte'
+        : 'Custom software and apps from Q2,500/mo, implementation, integrations and support',
     },
   ];
 
   return (
     <main>
-      {/* Schema.org JSON-LD */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: organizationSchema }}
-      />
-
       <HeroSection
         title={
           isSpanish
@@ -196,14 +169,14 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
         }
         cta={
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href={`/${lang}/partners/apply`}>
+            <a href={`${ERP_URL}/${lang}/demo`}>
               <Button variant="primary" size="lg" className="w-full sm:w-auto">
                 {isSpanish ? 'Solicitar Demo' : 'Request Demo'}
               </Button>
-            </Link>
-            <Link href={`/${lang}/partners`}>
+            </a>
+            <Link href={`/${lang}${CUSTOM_SOFTWARE_PATH}`}>
               <Button variant="outline" size="lg" className="w-full sm:w-auto">
-                {isSpanish ? 'Hablar con Consultor' : 'Talk to Consultant'}
+                {isSpanish ? 'Software a la medida desde Q2,500/mes' : 'Custom software from Q2,500/mo'}
               </Button>
             </Link>
           </div>
@@ -253,6 +226,35 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
         columns={3}
       />
 
+      {/* Custom software service */}
+      <section className="py-16 bg-gradient-to-br from-primary-700 to-primary-900 text-white">
+        <div className="container mx-auto px-4 max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+          <div className="md:col-span-2">
+            <span className="inline-block bg-lime-400 text-gray-900 font-bold px-3 py-1 rounded-full text-sm mb-4">
+              {isSpanish ? 'Nuevo servicio' : 'New service'}
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              {isSpanish
+                ? 'Desarrollo de software y apps a la medida desde Q2,500 al mes'
+                : 'Custom software and app development from Q2,500 per month'}
+            </h2>
+            <p className="text-lg opacity-90">
+              {isSpanish
+                ? 'Sistemas web, apps móviles e integraciones (FEL, pagos, WhatsApp) con hosting, soporte y mejoras mensuales incluidas. Sin una gran inversión inicial.'
+                : 'Web systems, mobile apps and integrations (FEL, payments, WhatsApp) with hosting, support and monthly improvements included. No large upfront investment.'}
+            </p>
+          </div>
+          <div className="flex md:justify-end">
+            <Link
+              href={`/${lang}${CUSTOM_SOFTWARE_PATH}`}
+              className="bg-white text-primary-700 hover:bg-primary-50 font-semibold px-6 py-3 rounded-lg transition-colors"
+            >
+              {isSpanish ? 'Ver planes y precios' : 'See plans and pricing'}
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <CTASection
         variant="gradient"
         title={isSpanish ? '¿Listo para transformar tu empresa?' : 'Ready to transform your business?'}
@@ -262,11 +264,15 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
             : 'Schedule a free consultation and discover how we can help you'
         }
         cta={
-          <Link href={`/${lang}/partners/apply`}>
+          <a
+            href={whatsappLink(isSpanish ? 'Hola GDS, quiero agendar una consultoría gratuita.' : 'Hi GDS, I would like to schedule a free consultation.')}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Button variant="secondary" size="lg">
               {isSpanish ? 'Agendar Consultoría' : 'Schedule Consultation'}
             </Button>
-          </Link>
+          </a>
         }
       />
     </main>

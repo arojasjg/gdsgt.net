@@ -21,6 +21,7 @@ export function Header({ lang }: HeaderProps) {
     erp: `https://erp.grupogds.co/${lang}`,
     resources: `https://resources.gdsgt.net/${lang}`,
     services: `https://services.gdsgt.net/${lang}`,
+    customSoftware: `https://www.gdsgt.net/${lang}/software-a-la-medida`,
     contact: `https://erp.grupogds.co/${lang}/contact`,
     demo: `https://erp.grupogds.co/${lang}/demo`
   });
@@ -37,6 +38,7 @@ export function Header({ lang }: HeaderProps) {
           erp: `http://localhost:9001/${lang}`,
           resources: `http://localhost:9003/${lang}`,  // CORREGIDO: 9003 (antes 9002)
           services: `http://localhost:9002/${lang}`,   // CORREGIDO: 9002 (antes 9003)
+          customSoftware: `http://localhost:9000/${lang}/software-a-la-medida`,
           contact: `http://localhost:9001/${lang}/contact`,
           demo: `http://localhost:9001/${lang}/demo`
         });
@@ -52,6 +54,7 @@ export function Header({ lang }: HeaderProps) {
       solutions: 'Soluciones',
       resources: 'Recursos',
       services: 'Servicios',
+      customSoftware: 'Software a la medida',
       pricing: 'Precios',
       contact: 'Contacto',
       demo: 'Solicitar Demo',
@@ -63,6 +66,7 @@ export function Header({ lang }: HeaderProps) {
       solutions: 'Solutions',
       resources: 'Resources',
       services: 'Services',
+      customSoftware: 'Custom Software',
       pricing: 'Pricing',
       contact: 'Contact',
       demo: 'Request Demo',
@@ -89,7 +93,7 @@ export function Header({ lang }: HeaderProps) {
           </a>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-6">
             <a 
               href={urls.home}
               className="text-gray-700 hover:text-primary-600 transition-colors"
@@ -115,6 +119,12 @@ export function Header({ lang }: HeaderProps) {
               {t.services}
             </a>
             <a 
+              href={urls.customSoftware}
+              className="text-gray-700 hover:text-primary-600 transition-colors"
+            >
+              {t.customSoftware}
+            </a>
+            <a 
               href={urls.contact}
               className="text-gray-700 hover:text-primary-600 transition-colors"
             >
@@ -131,7 +141,7 @@ export function Header({ lang }: HeaderProps) {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 text-gray-700 hover:text-primary-600"
+            className="lg:hidden p-2 text-gray-700 hover:text-primary-600"
             aria-label={t.menu}
           >
             <svg 
@@ -161,7 +171,7 @@ export function Header({ lang }: HeaderProps) {
         
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-gray-200">
+          <div className="lg:hidden py-4 border-t border-gray-200">
             <div className="flex flex-col space-y-4">
               <a 
                 href={urls.home}
@@ -190,6 +200,13 @@ export function Header({ lang }: HeaderProps) {
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t.services}
+              </a>
+              <a 
+                href={urls.customSoftware}
+                className="text-gray-700 hover:text-primary-600 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {t.customSoftware}
               </a>
               <a 
                 href={urls.contact}

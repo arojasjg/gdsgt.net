@@ -179,7 +179,7 @@ export default async function BlogPage({ params }: { params: Promise<{ lang: str
         title={t.cta.title}
         description={t.cta.description}
         cta={
-          <Link href={`/${lang}/contact`}>
+          <Link href={`https://erp.grupogds.co/${lang}/contact`}>
             <button className="px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors">
               {t.cta.button}
             </button>

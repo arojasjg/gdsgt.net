@@ -90,14 +90,78 @@ export interface CaseStudy {
   };
 }
 
+/**
+ * The case study source files use a richer, different shape (problems,
+ * features_used, lessons_learned, next_steps...). Normalize them into the
+ * CaseStudy shape the pages render.
+ */
+function normalizeCaseStudy(raw: any): CaseStudy {
+  const implementation = raw.solution?.implementation ?? {};
+  return {
+    slug: raw.slug,
+    title: raw.title,
+    subtitle: raw.subtitle ?? raw.excerpt ?? '',
+    company: {
+      name: raw.company?.name ?? '',
+      industry: raw.company?.industry ?? raw.industry ?? '',
+      size: raw.company?.size ?? '',
+      location: raw.company?.location ?? raw.country ?? '',
+      website: raw.company?.website,
+    },
+    challenge: {
+      title: raw.challenge?.title ?? 'El Desafío',
+      description: raw.challenge?.description ?? '',
+      pain_points:
+        raw.challenge?.pain_points ??
+        (raw.challenge?.problems ?? []).map((p: any) => `${p.title}: ${p.description}`),
+      previous_system: raw.challenge?.previous_system ?? '',
+    },
+    solution: {
+      title: raw.solution?.title ?? 'La Solución',
+      description: raw.solution?.description ?? '',
+      modules_implemented:
+        raw.solution?.modules_implemented ?? raw.technical_details?.modules_implemented ?? implementation.modules ?? [],
+      implementation_time: raw.solution?.implementation_time ?? implementation.duration ?? '',
+      key_features: raw.solution?.key_features ?? raw.solution?.features_used ?? [],
+    },
+    results: {
+      title: raw.results?.title ?? 'Los Resultados',
+      summary: raw.results?.summary ?? raw.results?.description ?? '',
+      metrics: (raw.results?.metrics ?? []).map((m: any) =>
+        'improvement' in m
+          ? m
+          : { metric: m.label, before: m.description, after: m.value, improvement: m.metric }
+      ),
+      testimonial: raw.results?.testimonial ?? raw.testimonial ?? { quote: '', author: '', position: '' },
+    },
+    journey: raw.journey ?? {
+      title: 'El Viaje de Implementación',
+      phases: (implementation.timeline ?? []).map((phase: any) => ({
+        phase: phase.title,
+        duration: phase.week ?? phase.period ?? '',
+        activities: phase.tasks ?? [],
+      })),
+    },
+    takeaways:
+      raw.takeaways ?? (raw.lessons_learned ?? []).map((l: any) => `${l.lesson}: ${l.description}`),
+    related_industry: raw.related_industry,
+    related_capabilities: raw.related_capabilities,
+    cta: raw.cta ?? {
+      title: raw.next_steps?.title ?? '',
+      description: raw.next_steps?.description ?? '',
+      button: raw.next_steps?.cta ?? 'Solicitar demo',
+    },
+  };
+}
+
 export const caseStudies: CaseStudy[] = [
-  distribuidoraLaEconomica as any,
-  textilesModernos as any,
-  farmaciasSaludPlus as any,
-  constructoraEdificar as any,
-  comercialDelNorte as any,
-  electronicaTechStore as any
-];
+  distribuidoraLaEconomica,
+  textilesModernos,
+  farmaciasSaludPlus,
+  constructoraEdificar,
+  comercialDelNorte,
+  electronicaTechStore,
+].map(normalizeCaseStudy);
 
 export function getCaseStudyBySlug(slug: string): CaseStudy | undefined {
   return caseStudies.find(cs => cs.slug === slug);

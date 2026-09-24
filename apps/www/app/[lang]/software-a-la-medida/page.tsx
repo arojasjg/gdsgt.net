@@ -9,8 +9,9 @@ import { Metadata } from 'next';
 import { HeroSection, FAQSection } from '@gds/ui';
 import { Card } from '@gds/ui';
 import { generateMetadata as generateSEOMetadata, generateFAQSchema, generateBreadcrumbSchema } from '@gds/seo';
-import { customSoftwareEs, customSoftwareEn } from '@gds/content';
+import { customSoftwareEs, customSoftwareEn, customSoftwareIndustries, customSoftwarePosts } from '@gds/content';
 import { SITE_URL, CUSTOM_SOFTWARE_PATH, whatsappLink } from '@/lib/site';
+import Link from 'next/link';
 import { ProjectForm } from './ProjectForm';
 
 type Lang = 'es' | 'en';
@@ -315,6 +316,22 @@ export default async function CustomSoftwarePage({ params }: { params: Promise<{
               </Card>
             ))}
           </div>
+          {lang === 'es' && (
+            <div className="mt-10 text-center">
+              <h3 className="text-xl font-semibold mb-4">Soluciones listas para tu industria</h3>
+              <div className="flex flex-wrap justify-center gap-3">
+                {customSoftwareIndustries.map((i) => (
+                  <Link
+                    key={i.slug}
+                    href={`/es${CUSTOM_SOFTWARE_PATH}/${i.slug}`}
+                    className="bg-white border border-primary-200 text-primary-700 hover:bg-primary-50 px-4 py-2 rounded-full text-sm font-medium"
+                  >
+                    {i.h1} →
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
@@ -358,6 +375,26 @@ export default async function CustomSoftwarePage({ params }: { params: Promise<{
           </div>
         </div>
       </section>
+
+      {lang === 'es' && (
+        <section className="py-12 bg-white">
+          <div className="container mx-auto px-4 max-w-5xl">
+            <h2 className="text-2xl font-bold mb-6 text-center">Guías para decidir</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {customSoftwarePosts.map((post) => (
+                <Link
+                  key={post.slug}
+                  href={`/es/blog/${post.slug}`}
+                  className="block rounded-xl border border-gray-200 p-5 hover:border-primary-400 hover:shadow-md transition"
+                >
+                  <p className="font-semibold text-gray-900 mb-2">{post.title}</p>
+                  <p className="text-sm text-gray-600">{post.excerpt}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <FAQSection
         title={t.faq.title}

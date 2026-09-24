@@ -32,6 +32,9 @@ export { aiFeatures as aiFeatures_en, aiUseCases as aiUseCases_en, aiStats as ai
 export { customSoftwareEs } from './es/custom-software';
 export { customSoftwareEn } from './en/custom-software';
 export type { CustomSoftwareContent, CustomSoftwarePlan } from './es/custom-software';
+export { customSoftwareIndustries, getCustomSoftwareIndustry } from './es/custom-software-industries';
+export type { CustomSoftwareIndustry } from './es/custom-software-industries';
+export { customSoftwarePosts } from './es/blog/software-a-la-medida';
 
 // English content (import when created)
 // export { modules as modulesEn } from './en/erp/modules';

@@ -86,8 +86,15 @@ export function Analytics() {
       else if (href.startsWith('tel:')) track('phone_click', payload);
       else if (href.startsWith('mailto:')) track('email_click', payload);
     };
+    // Floating WhatsApp button opens the chat via window.open, not a link
+    const onWhatsAppButton = (e: Event) =>
+      track('click_whatsapp', { page_path: window.location.pathname, source: 'floating_button', link_url: (e as CustomEvent).detail?.link_url });
     document.addEventListener('click', onClick, { capture: true });
-    return () => document.removeEventListener('click', onClick, { capture: true });
+    window.addEventListener('gds:whatsapp-click', onWhatsAppButton);
+    return () => {
+      document.removeEventListener('click', onClick, { capture: true });
+      window.removeEventListener('gds:whatsapp-click', onWhatsAppButton);
+    };
   }, []);
 
   const choose = (granted: boolean) => {

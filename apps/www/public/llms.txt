@@ -18,6 +18,17 @@ Plans (monthly subscription, 12-month minimum, initial development included per 
 - Professional / Profesional: from Q5,900/month. Web system + Android/iOS app, up to 25 hours/month, up to 50 users, integrations (FEL e-invoicing from SAT Guatemala, payment gateways, WhatsApp Business API, ERP), dashboards, priority support.
 - Enterprise / Empresarial: custom quote. Dedicated developer or squad, QA, DevOps, SLA, project manager.
 
+Industry solutions (Spanish):
+- [App de pedidos para distribuidoras](https://www.gdsgt.net/es/software-a-la-medida/app-pedidos-distribuidoras)
+- [Sistema de citas y expediente clínico](https://www.gdsgt.net/es/software-a-la-medida/sistema-citas-clinicas)
+- [Órdenes de trabajo para servicios técnicos](https://www.gdsgt.net/es/software-a-la-medida/ordenes-de-trabajo-servicios-tecnicos)
+- [Control de obra para constructoras](https://www.gdsgt.net/es/software-a-la-medida/control-de-obra-constructoras)
+
+Guides (Spanish):
+- [¿Cuánto cuesta un software a la medida en Guatemala?](https://www.gdsgt.net/es/blog/cuanto-cuesta-software-a-la-medida-guatemala)
+- [Software a la medida vs. software enlatado](https://www.gdsgt.net/es/blog/software-a-la-medida-vs-software-enlatado)
+- [¿Cuánto cuesta crear una app en Guatemala?](https://www.gdsgt.net/es/blog/cuanto-cuesta-crear-una-app-guatemala)
+
 Typical projects: inventory and order systems, route sales apps, work-order and field-service apps, clinic appointment systems, customer portals, e-commerce, dashboards, AI chatbots, and integrations with FEL (SAT), banks and payment gateways.
 
 ## Products
@@ -30,6 +41,10 @@ Typical projects: inventory and order systems, route sales apps, work-order and 
 - [Blog](https://www.gdsgt.net/es/blog): ERP, digital transformation and technology guides for Latin American companies
 - [ROI calculator](https://www.gdsgt.net/es/calculators/roi-erp)
 - [TCO calculator ERP vs Excel](https://www.gdsgt.net/es/calculators/tco-erp-vs-excel)
+
+## Company
+
+- [About GDS / Nosotros](https://www.gdsgt.net/es/nosotros)
 
 ## Contact
 

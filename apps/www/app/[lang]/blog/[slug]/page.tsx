@@ -10,7 +10,7 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { HeroSection, CTASection } from '@gds/ui/layouts';
 import { Card, Badge } from '@gds/ui';
-import { generateMetadata as generateSEOMetadata, generateArticleSchema } from '@gds/seo';
+import { generateMetadata as generateSEOMetadata, generateArticleSchema, generateFAQSchema } from '@gds/seo';
 import { getBlogPostBySlug, getAllBlogPosts, getRelatedBlogPosts } from '@gds/content';
 
 export async function generateStaticParams() {
@@ -216,6 +216,25 @@ export default async function BlogPostPage({ params }: { params: Promise<{ lang:
             <p className="text-lg text-gray-700 leading-relaxed">{post.content.conclusion}</p>
           </div>
           
+          {/* FAQ */}
+          {post.faq && post.faq.length > 0 && (
+            <div className="mt-12">
+              <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: generateFAQSchema({ questions: post.faq }) }}
+              />
+              <h2 className="text-3xl font-bold mb-6 text-gray-900">{isSpanish ? 'Preguntas frecuentes' : 'FAQ'}</h2>
+              <div className="space-y-6">
+                {post.faq.map((f, idx) => (
+                  <div key={idx}>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{f.question}</h3>
+                    <p className="text-gray-700 leading-relaxed">{f.answer}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          
           {/* Tags */}
           {post.tags && post.tags.length > 0 && (
             <div className="mt-12 pt-8 border-t">
@@ -263,7 +282,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ lang:
         title={post.cta.title}
         description={post.cta.description}
         cta={
-          <Link href={`https://erp.grupogds.co/${lang}/demo`}>
+          <Link href={post.cta.href ?? `https://erp.grupogds.co/${lang}/demo`}>
             <button className="px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors">
               {post.cta.button}
             </button>

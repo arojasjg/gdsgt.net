@@ -8,6 +8,7 @@ import { queEsUnErp2026 } from './blog/que-es-un-erp-2026';
 import { iaTransformandoErp2026 } from './blog/ia-transformando-erp-2026';
 import { gdsOneVsSap2026 } from './blog/gds-one-vs-sap-2026';
 import { cuantoCuestaErp2026 } from './blog/cuanto-cuesta-erp-guatemala-2026';
+import { customSoftwarePosts } from './blog/software-a-la-medida';
 
 export interface BlogPost {
   slug: string;
@@ -54,15 +55,21 @@ export interface BlogPost {
   related_industry?: string;
   related_capability?: string;
   
+  // FAQ (rendered and marked up with FAQPage schema)
+  faq?: Array<{ question: string; answer: string }>;
+  
   // CTA
   cta: {
     title: string;
     description: string;
     button: string;
+    /** Defaults to the GDS ONE demo when omitted */
+    href?: string;
   };
 }
 
 export const blogPosts: BlogPost[] = [
+  ...customSoftwarePosts,
   // queEsUnErp2026 as any,
   // iaTransformandoErp2026 as any,
   // gdsOneVsSap2026 as any,

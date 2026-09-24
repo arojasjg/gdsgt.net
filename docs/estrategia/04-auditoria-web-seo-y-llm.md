@@ -20,22 +20,28 @@ Estado del repositorio `gdsgt.net` (app `apps/www`, Next.js 16).
 | 12 | No existía `llms.txt`. | — | Creado `/llms.txt` con el resumen de la empresa, los planes y los enlaces. Es barato y no hace daño, aunque su impacto aún no está probado. |
 | 13 | No había página del nuevo servicio. | — | Landing completa ES/EN con schema `Service` + `Offer` (GTQ/mes), `FAQPage` y `BreadcrumbList`, formulario que envía a WhatsApp, y enlaces en header, footer e inicio. |
 
-## 2. Pendientes críticos (requieren acción tuya o decisión)
+## 2. Estado de los pendientes
 
-| Prioridad | Pendiente | Por qué importa | Qué hacer |
-|---|---|---|---|
-| ✅ 1 | **Analítica:** Google tag (GA4 / Google Ads) y Meta Pixel ya están integrados. Se envían automáticamente los clics a WhatsApp, teléfono y correo (`Contact`) y el formulario (`generate_lead` / `Lead`). | — | Configurar en el servidor `NEXT_PUBLIC_GOOGLE_TAG_IDS` (ej. `G-XXXX,AW-XXXX`) y `NEXT_PUBLIC_META_PIXEL_ID`, y hacer build. En GA4 marcar `generate_lead` y `click_whatsapp` como eventos clave; en Google Ads, importarlos como conversiones. |
-| 🔴 2 | **El formulario de partners no envía nada** (código `// TODO: Send to API`; simula el envío y muestra "¡Aplicación recibida!"). | Cada solicitud de partner se pierde en silencio. | Decidir destino: correo (Resend o SMTP), CRM o Google Sheets. Puedo implementarlo. Mientras tanto, el formulario del nuevo servicio usa WhatsApp, así que sí llega. |
-| 🔴 3 | **Casos de éxito con cifras muy específicas** (ROI 816 %, US$68,000/año) y nombres de clientes reales, con inconsistencias: en "Comercial Kerly" el texto aún dice "La Económica", y varias empresas guatemaltecas llevan etiquetas de otro país (Costa Rica, Nicaragua, Honduras, Panamá, El Salvador). | Si las cifras no están aprobadas por los clientes, hay riesgo reputacional y legal. Google y los LLMs penalizan contenido poco confiable. | Validar cada caso con el cliente (cifras, nombre, cita, permiso). Corregir las inconsistencias. Ideal: agregar el nombre y cargo reales en los testimonios. |
-| 🟠 4 | Afirmación "+500 empresas en Latinoamérica" en metadatos y banners. | Tiene que ser verificable. | Confirmar o ajustar. |
-| 🟠 5 | **Marca dividida en 3 dominios** (gdsgt.net, erp.grupogds.co, correo @grupogds.co). | La autoridad SEO se divide y los LLMs pueden confundir la entidad. | A mediano plazo, consolidar en un solo dominio (ej. `gdsgt.net/erp` o `erp.gdsgt.net`) con redirecciones 301. Como mínimo, enlazar ambos sitios entre sí y usar el mismo schema `@id`. |
-| 🟠 6 | `<html lang="es">` fijo también en las páginas `/en`. | Señal de idioma incorrecta para Google. | Mover `<html>` al layout `[lang]` o usar middleware. Puedo hacerlo. |
-| 🟠 7 | El blog y los casos de éxito solo existen en español, pero `/en/blog/...` también se genera con contenido en español. | Contenido duplicado. | Poner `noindex` o traducir; o no generar rutas `/en` para contenido que solo está en español. |
-| 🟡 8 | Sin páginas por industria para el servicio a la medida. | Pierdes búsquedas de nicho ("app de pedidos para distribuidoras"). | Crear 4–6 landings (ver el documento 01, sección 2.2). |
-| 🟡 9 | Sin página "Nosotros" ni "Equipo". | E-E-A-T (experiencia y confianza) y señales de entidad para los LLMs. | Página con historia desde 2009, equipo, fotos, oficinas y reconocimientos. |
-| 🟡 10 | Sin página de reseñas ni schema `Review` real. | Estrellas en Google y confianza. | Cuando existan reseñas reales en Google o Clutch, mostrarlas en el sitio. |
-| 🟡 11 | IndexNow no configurado. | Indexación instantánea en Bing, Yandex y ChatGPT Search. | Generar la clave en Bing Webmaster y guardar `public/<clave>.txt`. |
-| 🟡 12 | Imágenes de clientes en PNG sin optimizar; `logo.png` de 700 KB. | Velocidad (Core Web Vitals). | Convertir a WebP o SVG. Next/Image ya las redimensiona, pero el original pesa mucho. |
+| Estado | Tema | Detalle / qué falta de tu lado |
+|---|---|---|
+| ✅ | Analítica | Google tag (GA4/Ads) y Meta Pixel integrados; banner de cookies solo para visitantes de Europa. **Falta:** poner los IDs (ver `05-configuracion-produccion.md`). |
+| ✅ | Formulario de partners | Ya envía de verdad a `/api/leads` (webhook y/o correo). Si falla, ofrece enviarlo por WhatsApp. **Falta:** configurar el destino. |
+| ✅ | `<html lang>` | Correcto por idioma (`es`/`en`). |
+| ✅ | Contenido solo en español bajo `/en` | Blog y casos en `/en` con `noindex` y fuera del sitemap. |
+| ✅ | **Dominio equivocado** | Blog y casos declaraban `www.gds.com` como dominio (canonical apuntaba a otro sitio). Corregido a `www.gdsgt.net`. |
+| ✅ | Páginas por industria | 4 landings: distribuidoras, clínicas, servicios técnicos, constructoras. |
+| ✅ | Página "Nosotros" | `/es/nosotros` y `/en/nosotros`, solo con datos verificables. |
+| ✅ | Blog del servicio | 3 guías con FAQ y schema: costo de software a la medida, a la medida vs enlatado, costo de una app. |
+| ✅ | IndexNow | Clave publicada y script `bun run indexnow` (en `apps/www`). |
+| ✅ | Logo | De 700 KB a 66 KB. |
+| ✅ | Política de privacidad | Sección de cookies con Google y Meta. |
+| ✅ | Botón flotante de WhatsApp | Ahora se mide como conversión y tiene mensaje propio en la página del servicio. |
+| 🔴 | **Casos de éxito** | Originalmente eran empresas ficticias ("Distribuidora La Económica", "Textiles Modernos"…) renombradas con clientes reales conservando cifras inventadas. **Están ocultos para Google y los LLMs** (`noindex`, fuera del sitemap y de llms.txt) pero siguen visibles en el sitio. Valida cada uno con el cliente, corrige los textos y cambia `CASE_STUDIES_VERIFIED` a `true` en `apps/www/lib/site.ts`. Si no se pueden validar, conviene retirarlos. |
+| 🟠 | "+500 empresas en Latinoamérica" | Confirmar la cifra o ajustarla. |
+| 🟠 | Autores del blog | Los artículos antiguos tienen autores como "Carlos Méndez" o "Lic. Patricia Hernández". Si no son personas reales de GDS, cambiarlos por "Equipo GDS" o por autores reales con perfil de LinkedIn (señal de confianza para Google). |
+| 🟠 | Marca en 3 dominios | Evaluar consolidación (gdsgt.net / erp.grupogds.co / correo @grupogds.co). |
+| 🟡 | Reseñas | Cuando existan reseñas reales (Google, Clutch), mostrarlas en el sitio. |
+| 🟡 | Imágenes de clientes | Convertir a WebP (menor prioridad; next/image ya las optimiza). |
 
 ## 3. Cómo posicionarse en ChatGPT, Perplexity, Gemini, Claude y AI Overviews (GEO)
 

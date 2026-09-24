@@ -44,6 +44,11 @@ export function WhatsAppButton({
     if (typeof window !== 'undefined') {
       const path = window.location.pathname;
       
+      if (path.includes('/software-a-la-medida')) {
+        return lang === 'es'
+          ? 'Hola GDS, me interesa el desarrollo de software a la medida desde Q2,500/mes'
+          : 'Hi GDS, I am interested in custom software development from Q2,500/month';
+      }
       if (path.includes('/pricing')) {
         return lang === 'es' 
           ? 'Hola, quiero una cotización personalizada de GDS ONE'
@@ -74,6 +79,8 @@ export function WhatsAppButton({
   const handleClick = () => {
     const encodedMessage = encodeURIComponent(getDefaultMessage());
     const whatsappUrl = `https://wa.me/${phoneNumber.replace(/[^0-9]/g, '')}?text=${encodedMessage}`;
+    // Picked up by the site's analytics as a WhatsApp conversion
+    window.dispatchEvent(new CustomEvent('gds:whatsapp-click', { detail: { link_url: whatsappUrl } }));
     window.open(whatsappUrl, '_blank');
   };
 

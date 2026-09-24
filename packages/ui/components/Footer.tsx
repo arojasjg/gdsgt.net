@@ -227,6 +227,11 @@ export const Footer: React.FC<FooterProps> = ({ lang = 'es' }) => {
             <h3 className="text-white text-lg font-bold mb-4">{t.resources}</h3>
             <ul className="space-y-2">
               <li>
+                <a href={`${urls.www}/nosotros`} className="hover:text-white transition-colors">
+                  {isSpanish ? 'Nosotros' : 'About us'}
+                </a>
+              </li>
+              <li>
                 <a href={`${urls.www}/blog`} className="hover:text-white transition-colors">
                   Blog
                 </a>

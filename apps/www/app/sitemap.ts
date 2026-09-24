@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next';
-import { getAllBlogPosts, getAllCaseStudies } from '@gds/content';
+import { getAllBlogPosts, getAllCaseStudies, customSoftwareIndustries } from '@gds/content';
 import { SITE_URL, CUSTOM_SOFTWARE_PATH, CASE_STUDIES_VERIFIED } from '@/lib/site';
 
 type Entry = MetadataRoute.Sitemap[number];
@@ -34,6 +34,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...localized('', 'weekly', 1.0),
     ...localized(CUSTOM_SOFTWARE_PATH, 'weekly', 0.95),
+    ...customSoftwareIndustries.map((i) => ({
+      url: `${SITE_URL}/es${CUSTOM_SOFTWARE_PATH}/${i.slug}`,
+      changeFrequency: 'monthly' as const,
+      priority: 0.85,
+    })),
     // Blog and case studies are Spanish-only (the /en copies are noindex)
     { url: `${SITE_URL}/es/blog`, changeFrequency: 'weekly', priority: 0.8 },
     ...(CASE_STUDIES_VERIFIED
@@ -41,6 +46,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       : []),
     ...localized('/calculators/roi-erp', 'monthly', 0.6),
     ...localized('/calculators/tco-erp-vs-excel', 'monthly', 0.6),
+    ...localized('/nosotros', 'monthly', 0.7),
     ...localized('/partners', 'monthly', 0.5),
     ...localized('/privacy', 'yearly', 0.2),
     ...localized('/terms', 'yearly', 0.2),

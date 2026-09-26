@@ -2,6 +2,50 @@
 
 Todo se configura con variables de entorno en `apps/www/.env.local` en el servidor (ver `apps/www/.env.example`). Después de cambiarlas: `bun run build` y reiniciar PM2 (`./deploy.sh`).
 
+## 0. ⚠️ Publicar el sitio sin romper el ERP
+
+El **ERP vive en el mismo dominio**: `https://www.gdsgt.net/erp/` (PHP/Yii, con las apps React en `/erp/react-front/...`). El sitio nuevo es Next.js (Node con PM2). Si el dominio completo se manda a Node, **el ERP, el punto de venta, espacios y asistencia dejan de funcionar**.
+
+Antes de publicar:
+
+1. **Inventario de la carpeta raíz actual** de `www.gdsgt.net` en Plesk (`httpdocs`): anota cada carpeta o archivo que hoy responde en el dominio (`/erp/` y cualquier otra: tienda, imágenes, descargas, verificaciones `.html` de Google, etc.). Todos deben seguir sirviéndose por PHP/Apache.
+2. En Plesk → dominio → **Apache & nginx Settings → Additional nginx directives**, envía a Node solo lo que no sea del ERP (ajusta el puerto al de PM2):
+
+```nginx
+# El ERP (y cualquier otra carpeta del inventario) sigue en PHP/Apache
+location ^~ /erp/ {
+    proxy_pass http://127.0.0.1:7080;   # backend Apache de Plesk (https: 7081)
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+}
+
+# Todo lo demás: sitio Next.js
+location / {
+    proxy_pass http://127.0.0.1:9000;   # puerto de `next start` en PM2
+    proxy_http_version 1.1;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+}
+```
+
+   (Plesk usa 7080/7081 para Apache por defecto; confírmalo en tu servidor.)
+3. **Puerto:** `apps/www/package.json` arranca Next en **9000**, pero `deploy.sh` indica 3000 y el `ecosystem.config.js` de PM2 no está en el repositorio. Unifica el puerto en PM2 y en la directiva de nginx.
+4. **Prueba después de publicar**, en este orden:
+   - `https://www.gdsgt.net/erp/`: login del ERP y una pantalla con listado.
+   - Punto de venta (`/erp/...punto_de_venta_visual`): abrir, agregar producto, cobrar en prueba.
+   - Espacios y asistencia.
+   - `https://www.gdsgt.net/es`: sitio nuevo; `/es/software-a-la-medida`; formulario de prueba.
+   - Tienda en línea (tienda.gdsgt.net / tienda.grupogds.co): cargar catálogo.
+5. **Plan de reversa:** guarda la configuración nginx anterior; si algo del ERP falla, restáurala (1 minuto) y el ERP vuelve a su estado previo.
+
+`robots.txt` del sitio nuevo ya bloquea `/erp/` para que Google no indexe el ERP.
+
 ## 1. Analítica y publicidad
 
 ### Cómo encontrar tus IDs
@@ -83,14 +127,14 @@ WEB_LEADS_USUARIO=<opcional: ID del usuario creador>
 **En el servidor del sitio web** (`apps/www/.env.local`):
 
 ```
-GDSONE_LEADS_URL=https://<dominio-del-erp>/index.php?r=web_lead/recibir
+GDSONE_LEADS_URL=https://www.gdsgt.net/erp/web_lead/recibir
 GDSONE_API_KEY=<el mismo WEB_LEADS_TOKEN>
 ```
 
 Prueba rápida desde el servidor:
 
 ```bash
-curl -X POST "https://<dominio-del-erp>/index.php?r=web_lead/recibir" \
+curl -X POST "https://www.gdsgt.net/erp/web_lead/recibir" \
   -H "Authorization: Bearer <token>" -H "Content-Type: application/json" \
   -d '{"source_label":"Prueba","name":"Prueba Web","company":"Prueba S.A.","email":"prueba@example.com","phone":"+502 5555 5555","message":"Lead de prueba"}'
 # Respuesta esperada: {"status":"success","prospecto_id":123,"proyecto_crm_id":456}

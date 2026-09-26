@@ -9,7 +9,8 @@
 import { MetadataRoute } from 'next';
 import { SITE_URL } from '@/lib/site';
 
-const PRIVATE_PATHS = ['/api/', '/admin/', '/private/'];
+// /erp/ is the GDS ERP (PHP) served on the same domain: keep it out of search engines
+const PRIVATE_PATHS = ['/api/', '/admin/', '/private/', '/erp/'];
 
 const AI_CRAWLERS = [
   // OpenAI

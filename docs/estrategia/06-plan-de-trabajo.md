@@ -4,15 +4,25 @@ Estado al 25/09/2026. Leyenda: 🤖 lo puede hacer Claude en el código · 👤 
 
 > El plan detallado de **seguridad del ERP** está en el repositorio privado `arojasjg/erp` (`SEGURIDAD-PLAN.md`). No se publica aquí porque este repositorio es público.
 
-## Prioridad 0: Seguridad del ERP (hoy)
+## Prioridad 0: Seguridad y continuidad del ERP (hoy)
+
+**Principio:** ningún cambio puede interrumpir el ERP ni las apps que dependen de él. Estas son las apps inventariadas:
+- punto de venta, kanban y asistencia (React dentro de `/erp/`);
+- tienda en línea (otro dominio, sin sesión);
+- importador de datos;
+- sitio web (leads);
+- PDF de facturas y enlaces públicos.
 
 | # | Quién | Tarea | Resultado esperado |
 |---|---|---|---|
-| 0.1 | 👤 | Respaldo completo del ERP (base de datos y archivos). | Respaldo restaurable fuera del servidor. |
-| 0.2 | 🤖 | Corregir la vulnerabilidad crítica del login del ERP. | El login solo acepta credenciales válidas. |
-| 0.3 | 🤖👤 | Bloqueo temporal en el servidor de las acciones de la API del ERP que hoy son públicas. | La API sin sesión queda cerrada desde fuera. |
-| 0.4 | 👤 | Revisar los logs de acceso del ERP por uso indebido. | Saber si hubo acceso a datos de clientes. |
-| 0.5 | 🤖 | Fases 1–3 del plan de seguridad (autenticación por token, inyección SQL, contraseñas, CORS). | ERP sin exposiciones críticas. |
+| 0.1 | 👤 | **Obtener el código real de producción del ERP**: el repositorio `arojasjg/erp` es de 2021 y no coincide con lo que corre hoy. | Código real en git; auditoría repetida sobre él. |
+| 0.2 | 👤 | Respaldo completo (base de datos y archivos) y **entorno de pruebas** con copia de la base de datos. | Respaldo restaurable; pruebas sin tocar producción. |
+| 0.3 | 👤 | Cerrar accesos de red innecesarios al servidor y **rotar las credenciales expuestas** (ver plan privado). | Sin secretos válidos a la vista. |
+| 0.4 | 🤖 | Correcciones de emergencia (login, facturación electrónica), probadas con la lista de regresión. | Riesgos críticos cerrados sin afectar el punto de venta. |
+| 0.5 | 🤖👤 | Protección de la API **en modo "solo registrar"** una semana, luego bloqueo, con reversa inmediata. | Ningún consumidor olvidado se rompe. |
+| 0.6 | 🤖 | Inyección SQL, contraseñas, CORS, PDF de facturas y limpieza (plan privado, fases 4–6). | ERP sin exposiciones críticas. |
+
+Detalle, inventario de consumidores, lista de regresión y reversa de cada fase: `SEGURIDAD-PLAN.md` en el repo privado `arojasjg/erp`.
 
 ## Prioridad 1: Que ningún contacto se pierda (semana 1)
 
@@ -30,6 +40,7 @@ Estado al 25/09/2026. Leyenda: 🤖 lo puede hacer Claude en el código · 👤 
 
 | # | Quién | Tarea | Estado |
 |---|---|---|---|
+| 2.0 | 👤 | **Antes de publicar:** configurar nginx para que `/erp/` siga yendo a PHP (sección 0 de `05-configuracion-produccion.md`). Si no, el ERP deja de funcionar. | Pendiente |
 | 2.1 | 🤖 | Abrir PR `claude/trusting-hopper-9t2cho` → `main` en `gdsgt.net` (el `deploy.sh` publica `main`). | Pendiente (a tu señal) |
 | 2.2 | 👤 | Revisar y aprobar el PR; ejecutar `deploy.sh`. | Pendiente |
 | 2.3 | 👤 | IDs de **GA4 (`G-…`)** y **Meta Pixel** → variables en el servidor (guía en `05-configuracion-produccion.md`). | Pendiente |
@@ -73,7 +84,7 @@ Detalle en los documentos 01, 02 y 03. Lo más importante:
 
 ## Lo que necesito de ti para avanzar
 
-1. **Luz verde** para empezar la seguridad del ERP (0.2 y 0.3) y saber si hay **entorno de pruebas**.
+1. **Acceso al código real del ERP** y saber si hay **entorno de pruebas**; luz verde para 0.3 y 0.4.
 2. **Dominio del ERP + IDs de corporación y empresa** para los leads.
 3. **Datos SMTP** de `info@gdsgt.net` (se configuran en el servidor, no en el código).
 4. **IDs de GA4 y Meta Pixel**.

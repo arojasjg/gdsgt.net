@@ -46,6 +46,36 @@ location / {
 
 `robots.txt` del sitio nuevo ya bloquea `/erp/` para que Google no indexe el ERP.
 
+### Procedimiento de publicación (paso a paso)
+
+**Antes (una sola vez)**
+
+1. Node.js 20 o superior y Bun en el servidor (`node -v`, `bun -v`); PM2: `npm i -g pm2`.
+2. Clonar el repo en una carpeta **fuera** del docroot del ERP, p. ej. `/var/www/vhosts/gdsgt.net/gds-web`.
+3. Crear `apps/www/.env.local` con las variables de este documento (secciones 1 y 2). No subirlo a git.
+4. `pm2 startup` (sigue la instrucción que imprime) para que el sitio arranque tras un reinicio.
+
+**Cada publicación** (fuera del horario de caja la primera vez):
+
+```bash
+cd /var/www/vhosts/gdsgt.net/gds-web
+./deploy.sh                       # git pull de main, bun install, build y pm2 restart (ecosystem.config.js)
+pm2 status                        # gds-www en "online"
+curl -sI http://127.0.0.1:9000/es | head -1      # HTTP/1.1 200
+```
+
+**Primera vez:** aplicar la directiva nginx del paso 2 **después** de que `pm2 status` muestre `online`. Luego correr las pruebas del paso 4.
+
+**Reversa**
+
+| Problema | Acción | Tiempo |
+|---|---|---|
+| El ERP (`/erp/`) no responde | Restaurar la directiva nginx anterior en Plesk → Aplicar | 1 min |
+| El sitio nuevo falla | `pm2 logs gds-www --lines 100` para ver el error; volver a la versión anterior: `git checkout <commit-anterior> && bun run build && pm2 restart gds-www` | 3 min |
+| Todo falla | Restaurar la directiva nginx anterior (el dominio vuelve a como estaba) y `pm2 stop gds-www` | 1 min |
+
+Logs: `logs/www-out.log` y `logs/www-error.log` en la carpeta del repo, o `pm2 logs gds-www`.
+
 ## 1. Analítica y publicidad
 
 ### Cómo encontrar tus IDs

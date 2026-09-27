@@ -69,7 +69,5 @@ pm2 logs --lines 10 --nostream
 
 echo -e "${GREEN}🎉 Deployment completed successfully!${NC}"
 echo -e "${GREEN}📊 Apps running on:${NC}"
-echo -e "  - WWW:       http://localhost:3000 → https://gdsgt.net"
-echo -e "  - ERP:       http://localhost:3001 → https://erp.grupogds.co"
-echo -e "  - Services:  http://localhost:3002 → https://services.gdsgt.net"
-echo -e "  - Resources: http://localhost:3003 → https://resources.gdsgt.net"
+echo -e "  - WWW (Next.js): http://localhost:9000 → https://www.gdsgt.net (nginx proxy)"
+echo -e "  - ERP (PHP):      https://www.gdsgt.net/erp/ (served by Apache, NOT by PM2)"
